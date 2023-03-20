@@ -1,97 +1,102 @@
-import styles from './Footer.module.scss'
+import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
-import Button from '~/Components/Button'; 
+import Button from '~/Components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const list1 = [
     {
         title: 'Giới thiệu HAPPYHOW',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Chương trình Affiliate',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Blogger',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Tin tức',
-        to: '/home'
+        to: '/',
     },
-
-]
+];
 const list2 = [
     {
         title: 'Phí vận chuyển',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Hướng dẫn đặt hàng',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Chính sách đổi / trả',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Làm thế nào để theo dỗi',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Hướng dẫn chọn size',
-        to: '/home'
+        to: '/',
     },
-]
+];
 const list3 = [
     {
         title: 'Liên hệ',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Phương thức thanh toán',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Điểm thưởng',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Mua hàng online: 0903 000 000',
-        to: '/home'
+        to: '/',
     },
     {
         title: 'Góp ý, khiếu nại: 1800 2086',
-        to: '/home'
+        to: '/',
     },
-]
+];
 function Footer() {
-    return ( 
-        <div className={cx('row','wrapper' )} >
+    return (
+        <div className={cx('row', 'wrapper')}>
             <div className={cx('col-6')}>
                 <div className={cx('row')}>
                     <div className={cx('col-4')}>
                         <div className={cx('logo')}>
-                            <img src='https://happyhow.me/1428355432291766272/images/22222.svg' alt= 'HAPPYHOW' />
+                            <img src="https://happyhow.me/1428355432291766272/images/22222.svg" alt="HAPPYHOW" />
                         </div>
                         {list1.map((item, idx) => (
-                            <Button className={cx('link-item')} to ={item.to} key ={idx}>{item.title}</Button>
+                            <Button className={cx('link-item')} to={item.to} key={idx}>
+                                {item.title}
+                            </Button>
                         ))}
                     </div>
                     <div className={cx('col-4')}>
                         <h2 className={cx('heading')}>HỖ TRỢ KHÁCH HÀNG</h2>
                         {list2.map((item, idx) => (
-                            <Button className={cx('link-item')} key={idx} to = {item.to}>{item.title}</Button>
+                            <Button className={cx('link-item')} key={idx} to={item.to}>
+                                {item.title}
+                            </Button>
                         ))}
                     </div>
                     <div className={cx('col-4')}>
                         <h2 className={cx('heading')}>DỊCH VỤ KHÁCH HÀNG</h2>
                         {list3.map((item, idx) => (
-                            <Button className={cx('link-item')} key={idx} to = {item.to}>{item.title}</Button>
+                            <Button className={cx('link-item')} key={idx} to={item.to}>
+                                {item.title}
+                            </Button>
                         ))}
                     </div>
                 </div>
@@ -99,25 +104,25 @@ function Footer() {
                     <h2 className={cx('heading_footer')}>© Bản quyền thuộc về HAPPYHOW.vn All rights reserved</h2>
                 </div>
             </div>
-            <div className={cx('col-6', 'netword')}>    
+            <div className={cx('col-6', 'netword')}>
                 <h2 className={cx('heading')}>KẾT NỐI VỚI CHÚNG TÔI </h2>
                 <div className={cx('list-icon')}>
-                    <FontAwesomeIcon className={cx('icon')} icon = {faFacebookF} />
-                    <FontAwesomeIcon className={cx('icon')} icon = {faYoutube} />
+                    <FontAwesomeIcon className={cx('icon')} icon={faFacebookF} />
+                    <FontAwesomeIcon className={cx('icon')} icon={faYoutube} />
                     <FontAwesomeIcon className={cx('icon')} icon={faInstagram} />
                     <FontAwesomeIcon className={cx('icon')} icon={faTiktok} />
                 </div>
                 <h2 className={cx('heading')}>ĐĂNG KÝ NHẬN TIN TỪ HAPPYHOW</h2>
                 <div className={cx('input')}>
-                    <input className={cx('input-email')} placeholder='Địa chỉ email của bạn'></input>
+                    <input className={cx('input-email')} placeholder="Địa chỉ email của bạn"></input>
                     <button className={cx('btn-apply')}>Áp dụng</button>
                 </div>
                 <h2 className={cx('heading')}>PHƯƠNG THỨC THANH TOÁN ONLINE</h2>
                 <div className={cx('pay')}>
-                    <img src='https://www.happyhow.me/1428355432291766272/d/images/icon-visa.svg' />
-                    <img src='https://www.happyhow.me/1428355432291766272/d/images/icon-vnpay.svg' />
-                    <img src='https://www.happyhow.me/1428355432291766272/d/images/icon-momo.svg' />
-                    <img src='https://www.happyhow.me/1428355432291766272/d/images/icon-mastercard.svg' />
+                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-visa.svg" />
+                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-vnpay.svg" />
+                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-momo.svg" />
+                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-mastercard.svg" />
                 </div>
             </div>
         </div>

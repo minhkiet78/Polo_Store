@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import useStore from '~/store';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -38,7 +38,8 @@ const nav_items = [
 
 function Header({ setLogin, setCart }) {
     const [btn_menu, setBtn_Menu] = useState(nav_items);
-
+    const state = useStore();
+    console.log('datat', state);
     const handleClick = (idx) => {
         let temp = [...btn_menu];
         for (const itemp of temp) {
@@ -59,7 +60,7 @@ function Header({ setLogin, setCart }) {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <div className={cx('logo')}>
                         <img src="" alt="HAPPYHOW" />
                     </div>

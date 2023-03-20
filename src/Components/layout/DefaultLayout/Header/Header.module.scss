@@ -12,13 +12,12 @@
     left: 0;
     right: 0;
     .inner {
-        height:  80px;
+        height: 80px;
         width: 1274px;
         padding: 0 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
     }
     .logo {
         cursor: pointer;
@@ -45,8 +44,6 @@
         &:focus-within {
             border-color: rgba(22, 24, 35, 0.2);
         }
-
-
     }
     .search input {
         font-weight: 400;
@@ -81,6 +78,7 @@
         color: #000;
         margin: 0 20px;
         font-weight: 600;
+        transition: 0.3s;
         &:hover {
             color: var(--primary);
         }

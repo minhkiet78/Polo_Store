@@ -1,0 +1,203 @@
+.wrapper {
+    .video {
+        height: 800px;
+    }
+    .sub {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 182px;
+        padding: 30px 0 16px;
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 1.3;
+        }  
+        p {
+            margin-left: 18px;
+            width: 148px;
+            font-size: 16px;
+            color: #212121;
+        } 
+    }
+    .sub-heading {
+        display: flex;
+    }
+    .sub-heading1 {
+        position: relative;
+    }
+    .sub-heading1::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 2px;
+        background-color: black;
+        height: 50px;
+        right: -50px;
+        top: 0;
+    }
+    .collection {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: var(--text-corlor);
+        margin: 40px 0 20px 0 ;
+    }
+}
+.product-list {
+    margin-top: 10px;
+    padding: 0 80px;
+}
+
+.product {
+    height: 500px;
+    margin: 20px 5px;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        border: solid 1px var(--primary);
+        top: -4px;
+    }
+    .product-image {
+        width: 100%;
+        height: 380px;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    .tym {
+        position: relative;
+        top: -370px;
+        left: 260px;
+        font-size: 26px;
+        color: rgb(186, 184, 184);
+    }
+    .product-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        font-size: 16px;
+        color: var(--text-corlor);
+        font-weight: 600;
+        margin-bottom: 14px;
+        margin-left: 10px;
+    }
+    .product-price {
+        font-size: 12px;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+    .shopping {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        position: absolute;
+        z-index: 2;
+        bottom: 132px;
+        right: 20px;
+        background-color: #fff;
+        color: rgb(77, 75, 75);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.product::before {
+    z-index: 1;
+    content: "New";
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    width: 70px;
+    height: 24px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: var(--primary);
+    border-radius: 5px;
+    &:hover {
+        cursor: default;
+    }
+}
+.sale {
+    font-size: 10px;
+    position: relative;
+}
+.sale::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: #212121;
+    left: 0;
+    right: 0;
+    top: 5px;
+}
+.content {
+    height: 1000px;
+    width: 100%;
+    position: relative;
+    .background-image {
+        height: 80%;
+        width: 100%;
+        background-image: url('https://happyhow.me/1428355432291766272/d/images/polo-premium-bg-2.jpg');
+        opacity: 0.2;
+        object-fit: cover;
+    }
+    .content-image {
+        width: 100%;
+        display: flex;
+        padding: 0 76px;
+        position: absolute;
+        top: 50px;
+        .new-image {
+            width: 657px;
+            height: 900px;
+            object-fit: cover;
+        }
+        .show-product {
+            flex: 1;
+            height: 900px;
+            padding: 50px 20px;
+            background-color: #fff;
+            .text-product {
+                text-align: center;
+            }
+        }
+    }
+}
+.heading-slider {
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+.content_slider {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    .background-slider {
+        width: 100%;
+        height: 60%;
+        background-size: cover;
+        background-image: url('https://happyhow.me/1428355432291766272/images/vi/desk/slider/banner3-1512351077385637888.png');
+        filter: blur(2px);
+        background-repeat: no-repeat;
+    }
+    .container_slider {
+        position: absolute;
+        top: 100px;
+        max-width: 1062px;
+        left: 232px;
+        .slider-item {
+            padding: 0 10px;
+        }
+        .image-slider {
+            height: 600px;
+            width: 1030px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    }
+}

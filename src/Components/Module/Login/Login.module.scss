@@ -1,0 +1,110 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 12;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    .content {
+        display: flex;
+        position: relative;
+        top: 20px;
+        width: 800px;
+        background-color: #fff;
+        border-radius: 8px;
+        margin: auto ;
+        .content-text {
+            flex: 1;
+            padding: 100px 20px 30px 20px;
+            .logo {
+                width: 124px;
+                height: auto;
+                margin-left: 86px;
+            }
+            .heading {
+                text-align: center;
+                margin-top: 50px;
+                margin-bottom: 20px;
+            }
+            .input {
+                width: 100%;
+                padding: 10px;
+                background-color: rgb(208, 205, 205);
+                border-radius: 4px;
+                &:focus {
+                    border: solid 1px var(--primary);
+                    background-color: #fff;
+                }
+            }
+            .btn-xacnhan {
+                margin-top: 50px;
+                width: 100%;
+                padding: 10px 0;
+                border-radius: 4px;
+                
+            }
+            .sale {
+                display: flex;
+                width: 100%;
+                padding: 10px 10px;
+                background-color: #fff9f1;
+                margin-top: 20px;
+                border-left: 2px solid var(--primary);
+                .text {
+                    margin: 0;
+                    margin-left: 16px;
+                    font-size: 11px;
+                }
+                
+            }
+            .net-word {
+                width: 100%;
+                margin-top: 50px;
+                p {
+                    text-align: center;
+                }
+                .btn-netword {
+                    padding: 5px 0;
+                    display: block;
+                    margin-top: 10px;
+                    text-decoration: none;
+                    border: solid 1px var(--primary);
+                    color: var(--text-corlor);
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                    .icon-netword {
+                        margin: 0 20px;
+                    }
+                    .facebook {
+                        color: blue;
+                    }
+                     
+                }
+            }
+            
+        }
+        .image-login {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    }
+}
+.close {
+    position: absolute;
+    right: 10px;
+    font-size: 10px;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 50%;
+    &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}
+.active {
+    display: block;
+}

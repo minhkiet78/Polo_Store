@@ -1,0 +1,95 @@
+.wrapper {
+    position: fixed;
+    z-index: 12;
+    border: solid 1px rgb(236, 234, 234);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 394px;
+    background-color: #fff;
+    animation: mymove 0.2s linear;
+    display: none;
+    .heading {
+        padding: 20px 16px;
+        font-size: 18px;
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: center;
+        h3 {
+            font-weight: 700;
+        }
+        p {
+            position: relative;
+            top: 3px;
+            margin-right:  60px;
+            font-size: 14px;
+        }
+    }
+    .sub-heading {
+        display: flex;
+        background-color: rgb(119, 116, 116);
+        color: #fff;
+        font-size: 12px;
+        padding: 10px 16px;
+        align-items: center;
+        p {
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+    .content-cart {
+        padding: 16px;
+        overflow-y: auto;
+        height: 500px;
+        border-bottom: solid 1px #ccc;
+    }
+    .cart-rong {
+        position: relative;
+        top: 120px;
+        .icon-cart {
+            position: relative;
+            left: 115px;
+            font-size: 100px;
+            color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            color: #f9f9f9;
+            font-size: 20px;
+        }
+    }
+    .pay {
+        padding: 16px;
+        .sum-pay {
+            color: var(--text-corlor);
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            span {
+                font-weight: 600;
+                color: var(--primary);
+            }
+        }
+        .btn-pay {
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+            background-color: var(--primary);
+            &:hover {
+                opacity: 0.8;
+            }
+            .arow {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+.active {
+    display: block;
+}
+@keyframes mymove {
+    from {right: -100px;}
+    to {right: 0;}
+  }

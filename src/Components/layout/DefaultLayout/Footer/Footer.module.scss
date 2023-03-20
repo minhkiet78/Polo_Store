@@ -1,0 +1,72 @@
+.wrapper {
+    margin: 0 !important;
+    width: 100%;
+    height: 430px;
+    padding: 56px 110px;
+    background-color: #f9f9f9;
+    .logo {
+        width: 124px;
+        height: auto;
+    }
+    .heading {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+    }
+    .link-item {
+        display: block;
+        text-decoration: none;
+        color: var(--text-corlor);
+        font-size: 12px;
+        margin: 15px 0;
+    }
+}
+.heading_footer {
+    margin-top: 20px;
+}
+.netword {
+    padding-left: 100px !important;
+    .list-icon {
+        font-size: 22px;
+        display: flex;
+        .icon {
+            margin: 10px;
+            cursor: pointer;
+        }
+        .icon:first-child {
+            margin-left: 0;
+        }
+        
+    }
+    .input {
+        display: flex;
+        margin: 16px 0; 
+        position: relative;
+        .input-email {
+            padding: 10px;
+            border-radius: 9px;
+            width: 463px;
+            font-size: 14px;
+            border: solid 1px var(--text-corlor);
+        }
+        .btn-apply {
+            position: absolute;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            padding: 0 5px;
+            right: 80px;
+            top: 0;
+            bottom: 0;
+            border-top-right-radius: 9px;
+            border-bottom-right-radius: 9px;
+        }
+    }
+    .pay {
+        display: flex;
+    }
+    .pay img {
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+}

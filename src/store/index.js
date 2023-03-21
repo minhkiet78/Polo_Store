@@ -2,8 +2,8 @@ import Context from './Context';
 import { useContext } from 'react';
 
 function useStore() {
-    const state = useContext(Context);
-    return state;
+    const [state, dispatch] = useContext(Context);
+    return [state, dispatch];
 }
 
 export default useStore;

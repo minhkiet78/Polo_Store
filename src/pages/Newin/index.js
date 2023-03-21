@@ -24,7 +24,7 @@ const carousels = [
 const cx = classNames.bind(styles);
 
 function NewIn() {
-    const state = useStore();
+    const [state, dispatch] = useStore();
 
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);

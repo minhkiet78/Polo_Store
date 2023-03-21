@@ -9,6 +9,7 @@
     background-color: #fff;
     animation: mymove 0.2s linear;
     display: none;
+    box-shadow: 0px 0px 9px 0px #888888;
     .heading {
         padding: 20px 16px;
         font-size: 18px;
@@ -17,11 +18,12 @@
         align-items: center;
         h3 {
             font-weight: 700;
+            font-size: 18px;
         }
         p {
             position: relative;
             top: 3px;
-            margin-right:  60px;
+            margin-right: 60px;
             font-size: 14px;
         }
     }
@@ -41,7 +43,6 @@
         padding: 16px;
         overflow-y: auto;
         height: 500px;
-        border-bottom: solid 1px #ccc;
     }
     .cart-rong {
         position: relative;
@@ -60,15 +61,25 @@
         }
     }
     .pay {
-        padding: 16px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: solid 1px;
         .sum-pay {
             color: var(--text-corlor);
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px;
+            align-items: center;
+            padding: 16px;
+            h3 {
+                font-size: 18px;
+                margin: 0;
+            }
             span {
                 font-weight: 600;
                 color: var(--primary);
+                font-size: 18px;
             }
         }
         .btn-pay {
@@ -77,6 +88,7 @@
             text-align: center;
             color: #fff;
             background-color: var(--primary);
+            font-size: 20px;
             &:hover {
                 opacity: 0.8;
             }
@@ -89,7 +101,27 @@
 .active {
     display: block;
 }
+.product-item {
+    display: flex;
+    margin-bottom: 20px;
+    .image-product {
+        width: 70px;
+        height: 70px;
+        margin-right: 20px;
+    }
+    p {
+        font-size: 16px;
+        margin: 0;
+    }
+    span {
+        color: var(--primary);
+    }
+}
 @keyframes mymove {
-    from {right: -100px;}
-    to {right: 0;}
-  }
+    from {
+        right: -100px;
+    }
+    to {
+        right: 0;
+    }
+}

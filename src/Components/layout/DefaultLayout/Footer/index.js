@@ -1,6 +1,6 @@
 import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
-import Button from '~/Components/Button';
+import Button from '~/Components/ButtonComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
@@ -6,10 +6,9 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGift, faRotate, faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import { Carousel } from 'react-bootstrap';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
+import ModalCart from '~/Components/Support/ModalCart';
+import ButtonComponent from '~/Components/ButtonComponent';
 import useStore from '~/store';
-import Button from '~/Components/Button';
 import Product from '~/Components/Product';
 
 const cx = classNames.bind(styles);
@@ -124,14 +123,19 @@ const carousels = [
         title: 'Last slide',
     },
 ];
-// const $ = document.querySelector.bind()
 function Home() {
-    const state = useStore();
+    const [state] = useStore();
     const newProduct = state.product.slice(0, 4);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
+
+    const handleShow = () => {
+        setShow(true);
+    };
+    const handleCloseShow = () => setShow(false);
     return (
         <div className={cx('wrapper')}>
             <Carousel>
@@ -142,6 +146,7 @@ function Home() {
                     </Carousel.Item>
                 ))}
             </Carousel>
+
             <div className={cx('sub')}>
                 <h1 className={cx('sub-heading1')}>Mã ưu đãi</h1>
                 <div className={cx('sub-heading')}>
@@ -153,19 +158,26 @@ function Home() {
                     <p>Freeship cho đơn hàng từ 500k</p>
                 </div>
             </div>
-            <Button className={cx('btn-deal')} to={'/allproduct'}>
-                SĂN DEAL NGAY
-            </Button>
-            <div className={cx('container')}>
+            <div
+                className={cx('d-flex', 'justify-content-center', 'align-items-center', 'flex-column')}
+                style={{ marginBottom: '40px' }}
+            >
+                <ButtonComponent className={cx('btn-deal')} to={'/allproduct'}>
+                    SĂN DEAL NGAY
+                </ButtonComponent>
                 <h1 className={cx('heading-category')}>DANH MỤC BẠN CẦN</h1>
+            </div>
+            <div className={cx('container')}>
                 <div className={cx('row', 'row-category')}>
                     {category.map((item, idx) => (
                         <div key={idx} className={cx('col-3', 'category')}>
                             <img className={cx('image')} src={item.img} />
-                            <span className={cx('title')}>{item.title}</span>
-                            <Button className={cx('btn-link')} to={item.to}>
-                                Xem ngay
-                            </Button>
+                            <div className={cx('image_action')}>
+                                <span className={cx('title')}>{item.title}</span>
+                                <ButtonComponent className={cx('btn-link')} to={item.to}>
+                                    Xem ngay
+                                </ButtonComponent>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -173,8 +185,9 @@ function Home() {
                     <div className={cx('row', 'row_process')}>
                         {procedure.map((item, idx) => (
                             <div key={idx} className={cx('col-4', 'procedure')}>
-                                <img className={cx('procedure-image')} src={item.img} />
-                                <div className={cx('box-icon')}>{item.iocn}</div>
+                                <div className={cx('procedure-image')} style={{ backgroundImage: `url(${item.img})` }}>
+                                    <div className={cx('box-icon')}>{item.iocn}</div>
+                                </div>
                                 <h2 className={cx('procedure-heading')}>{item.title}</h2>
                                 <p className={cx('sub-heading')}>{item.sub_title}</p>
                             </div>
@@ -189,9 +202,9 @@ function Home() {
                             />
                             <h1 className={cx('process-footer')}>QUY TRÌNH ĐÓNG GÓI 2 LỚP</h1>
                             <h2 className={cx('sub-footer')}>Bảo vệ sản phẩm bằng sự chân thành</h2>
-                            <Button className={cx('btn-link2')} to={'/newin'}>
+                            <ButtonComponent className={cx('btn-link2')} to={'/newin'}>
                                 TRẢI NGHIỆM NGAY
-                            </Button>
+                            </ButtonComponent>
                         </div>
                         <div className={cx('col-4')}>
                             <img
@@ -206,13 +219,15 @@ function Home() {
                     <div className={cx('background-newproduct')}></div>
                     <div className={cx('row', 'list-product')}>
                         {newProduct.map((item, idx) => (
-                            <Product key={idx} product={item} />
+                            <Product key={idx} product={item} handleShow={handleShow} />
                         ))}
                     </div>
                 </div>
-                <Button className={cx('btn-tronbo')} to={'/allproduct'}>
-                    XEM TRỌN BỘ{' '}
-                </Button>
+                <div className={cx('d-flex', 'justify-content-center')}>
+                    <ButtonComponent className={cx('btn-tronbo')} to={'/allproduct'}>
+                        XEM TRỌN BỘ{' '}
+                    </ButtonComponent>
+                </div>
                 {/* <div class="container-fluid">
                     <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="12000">
                         <div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
@@ -241,11 +256,11 @@ function Home() {
                                 <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=8" alt="slide 7"/>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExample" role="ButtonComponent" data-slide="prev">
                             <i class="fa fa-chevron-left fa-lg text-muted"></i>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                        <a class="carousel-control-next text-faded" href="#carouselExample" role="ButtonComponent" data-slide="next">
                             <i class="fa fa-chevron-right fa-lg text-muted"></i>
                             <span class="sr-only">Next</span>
                         </a>
@@ -255,9 +270,9 @@ function Home() {
                 <h2 className={cx('heading-search')}>TÌM KIẾM NHIỀU NHẤT</h2>
                 <div className={cx('list-search')}>
                     {search.map((item, idx) => (
-                        <Button className={cx('btn-search')} to={item.to} key={idx}>
+                        <ButtonComponent className={cx('btn-search')} to={item.to} key={idx}>
                             {item.title}
-                        </Button>
+                        </ButtonComponent>
                     ))}
                 </div>
                 <div className={cx('content', 'content-image')}>
@@ -301,20 +316,21 @@ function Home() {
                         {image_netword.map((item, idx) => (
                             <div className={cx('col-4')}>
                                 <div className={cx('netword-item')} key={idx}>
-                                    <Button className={cx('image-link')} to={item.to}>
+                                    <ButtonComponent className={cx('image-link')} to={item.to}>
                                         <img src={item.image} />
-                                    </Button>
+                                    </ButtonComponent>
                                     <h1 className={cx('title-netword')}>{item.title}</h1>
                                     <p className={cx('sub-title_netword')}>{item.sub_title}</p>
-                                    <Button className={cx('btn-netword')} to={item.to}>
+                                    <ButtonComponent className={cx('btn-netword')} to={item.to}>
                                         Khám phá ngay
-                                    </Button>
+                                    </ButtonComponent>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+            {show && <ModalCart show={show} handleCloseShow={handleCloseShow} />}
         </div>
     );
 }

@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import useStore from '~/store';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import Button from '~/Components/Button';
+import { faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
+import Button from '~/Components/ButtonComponent';
 
 const cx = classNames.bind(styles);
 const nav_items = [
@@ -38,8 +37,6 @@ const nav_items = [
 
 function Header({ setLogin, setCart }) {
     const [btn_menu, setBtn_Menu] = useState(nav_items);
-    const state = useStore();
-    console.log('datat', state);
     const handleClick = (idx) => {
         let temp = [...btn_menu];
         for (const itemp of temp) {
@@ -59,10 +56,13 @@ function Header({ setLogin, setCart }) {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('inner')}>
+            <div className={cx('inner', 'container-fluid')}>
                 <Link to={'/'}>
                     <div className={cx('logo')}>
-                        <img src="" alt="HAPPYHOW" />
+                        <img
+                            src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
+                            alt="HAPPYHOW"
+                        />
                     </div>
                 </Link>
                 <div className={cx('search')}>
@@ -70,7 +70,7 @@ function Header({ setLogin, setCart }) {
                     <FontAwesomeIcon className={cx('icon-search')} icon={faMagnifyingGlass} />
                 </div>
                 <div className={cx('action-header')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faBagShopping} onClick={handleCart} />
+                    <FontAwesomeIcon className={cx('icon')} icon={faCartShopping} onClick={handleCart} />
                     <FontAwesomeIcon className={cx('icon')} icon={faUser} onClick={handleLogin} />
                 </div>
             </div>

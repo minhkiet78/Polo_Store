@@ -1,10 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, children, primary, outline, row, sizes, sizeM, sizeL, onClick, ...passProps }) {
+function ButtonComponent({ to, href, children, primary, outline, row, sizes, sizeM, sizeL, onClick, ...passProps }) {
     let Comp = 'button';
     const props = {
         onClick,
@@ -28,12 +29,12 @@ function Button({ to, href, children, primary, outline, row, sizes, sizeM, sizeL
         row,
     });
     return (
-        <div>
+        <Fragment>
             <Comp className={classe} {...props}>
                 <span>{children}</span>
             </Comp>
-        </div>
+        </Fragment>
     );
 }
 
-export default Button;
+export default ButtonComponent;

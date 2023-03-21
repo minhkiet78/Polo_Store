@@ -13,8 +13,7 @@
     right: 0;
     .inner {
         height: 80px;
-        width: 1274px;
-        padding: 0 16px;
+        padding: 0 100px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -62,11 +61,17 @@
     }
     .action-header {
         width: 100px;
-        font-size: 20px;
+        display: flex;
+        justify-content: space-around;
         .icon {
+            font-size: 25px;
             cursor: pointer;
-            margin-left: 20px;
             color: rgb(75, 74, 74);
+            transition: 0.3s ease;
+            &:hover {
+                transform: scale(1.2);
+                color: var(--primary);
+            }
         }
     }
 }

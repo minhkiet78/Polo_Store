@@ -1,23 +1,39 @@
+import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { activeProduct } from '~/store/action';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
+import helper from '../Support/helper';
+import useStore from '~/store';
 
 const cx = classNames.bind(styles);
-function Product({ product }) {
+function Product({ product, handleShow }) {
+    const [state, dispatch] = useStore();
+
+    const handleAddShop = () => {
+        dispatch(activeProduct(product));
+        handleShow();
+    };
     return (
         <div className={cx('col-3')}>
             <div className={cx('product')}>
                 <img className={cx('product-image')} src={product.image}></img>
-                <FontAwesomeIcon className={cx('tym')} icon={faHeart} />
-                <div className={cx('shopping')}>
-                    <FontAwesomeIcon className={cx('bag-shopping')} icon={faBagShopping} />
+                {product.popular && <span className={cx('ticker', 'ticker_popular')}>Popular</span>}
+                {product.new && <span className={cx('ticker', 'ticker_new')}>New</span>}
+                <div className={cx('group-action')}>
+                    <FontAwesomeIcon className={cx('action_icon', 'icon_heart')} icon={faHeart} />
+                    <FontAwesomeIcon
+                        className={cx('action_icon', 'icon_shop')}
+                        icon={faCartPlus}
+                        onClick={handleAddShop}
+                    />
                 </div>
+
                 <div className={cx('product-name')}>{product.name}</div>
-                <span className={cx('product-price')}>{product.price}</span>
-                <span className={cx('sale')}>299.000đ</span>
+                <div className={cx('group-price')}>
+                    <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>
+                    <span className={cx('sale')}>{helper.formatMoney(299000)}</span>
+                </div>
             </div>
         </div>
     );

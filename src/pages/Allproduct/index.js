@@ -8,7 +8,7 @@ import useStore from '~/store';
 const cx = classNames.bind(styles);
 
 function Allproduct() {
-    const state = useStore();
+    const [state, dispatch] = useStore();
 
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);

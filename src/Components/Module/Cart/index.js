@@ -3,7 +3,7 @@ import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 import useStore from '~/store';
 import helper from '~/Components/Support/helper';
-import { removeCart, showToast } from '~/store/action';
+import { removeCart, showToast, activeProduct, setModalCart, editCart } from '~/store/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRight,
@@ -26,7 +26,11 @@ function Cart({ isShow, setShow }) {
     const handleClose = () => {
         setShow(false);
     };
-
+    const handleEditcart = (product) => {
+        dispatch(activeProduct(product));
+        dispatch(editCart(true));
+        dispatch(setModalCart(true));
+    };
     const handleRomoveCart = (id) => {
         dispatch(removeCart(id));
         dispatch(showToast({ type: 'success', message: 'Xóa đơn hàng thành công !' }));
@@ -63,7 +67,11 @@ function Cart({ isShow, setShow }) {
                                             Tổng cộng: <span>{helper.formatMoney(product.total)}</span>
                                         </p>
                                         <div className={cx('group-action')}>
-                                            <FontAwesomeIcon className={cx('icon', 'icon-edit')} icon={faPenToSquare} />
+                                            <FontAwesomeIcon
+                                                className={cx('icon', 'icon-edit')}
+                                                icon={faPenToSquare}
+                                                onClick={() => handleEditcart(product)}
+                                            />
                                             <FontAwesomeIcon
                                                 className={cx('icon', 'icon-delete')}
                                                 icon={faTrash}
@@ -71,7 +79,6 @@ function Cart({ isShow, setShow }) {
                                             />
                                         </div>
                                     </div>
-                                    {/* <Button variant="primary">Thanh toán</Button> */}
                                 </div>
                             </div>
                         ))}

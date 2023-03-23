@@ -1,5 +1,25 @@
-import { ACTIVE_PRODUCT, ADD_CART, SHOW_TOAST, REMOVE_CART } from './contains';
+import {
+    ACTIVE_PRODUCT,
+    ADD_CART,
+    SHOW_TOAST,
+    REMOVE_CART,
+    EDIT_CART,
+    SET_MODAL_CART,
+    SET_MODAL_lOGIN,
+} from './contains';
 
+const setModalCart = (payload) => {
+    return {
+        type: SET_MODAL_CART,
+        payload,
+    };
+};
+const setModalLogin = (payload) => {
+    return {
+        type: SET_MODAL_lOGIN,
+        payload,
+    };
+};
 const activeProduct = (payload) => {
     return {
         type: ACTIVE_PRODUCT,
@@ -19,6 +39,12 @@ const removeCart = (payload) => {
         payload,
     };
 };
+const editCart = (payload) => {
+    return {
+        type: EDIT_CART,
+        payload,
+    };
+};
 const showToast = (payload) => {
     return {
         type: SHOW_TOAST,
@@ -26,4 +52,4 @@ const showToast = (payload) => {
     };
 };
 
-export { activeProduct, addCard, showToast, removeCart };
+export { activeProduct, addCard, showToast, removeCart, editCart, setModalCart, setModalLogin };

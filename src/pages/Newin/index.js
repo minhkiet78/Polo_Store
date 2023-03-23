@@ -2,10 +2,9 @@ import styles from './Newin.module.scss';
 import classNames from 'classnames/bind';
 
 import { Carousel, Row } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useStore from '~/store';
 import Product from '~/Components/Product';
-import ModalCart from '~/Components/Support/ModalCart';
 import Slider from '~/Components/layout/DefaultLayout/Slider';
 
 const carousels = [
@@ -18,6 +17,10 @@ const carousels = [
         title: 'Second slide',
     },
     {
+        image: require('src/asetss/image/slider_newin.jpeg'),
+        title: 'Second slide',
+    },
+    {
         image: require('src/asetss/image/Carousels/Newin/newin3.png'),
         title: 'Last slide',
     },
@@ -25,17 +28,12 @@ const carousels = [
 const cx = classNames.bind(styles);
 
 function NewIn() {
-    const [show, setShow] = useState(false);
-    const [state, dispatch] = useStore();
+    const [state] = useStore();
 
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
 
-    const handleShow = () => {
-        setShow(true);
-    };
-    const handleCloseShow = () => setShow(false);
     return (
         <div className={cx('wrapper')}>
             <video className={cx('video')} src={require('src/asetss/videos/videonew_in.mp4')} controls autoPlay muted />
@@ -50,16 +48,8 @@ function NewIn() {
                     <p>Freeship cho đơn hàng từ 500k</p>
                 </div>
             </div>
-            <Slider children={require('src/asetss/image/slider_newin.jpeg')} type={'slider-home'} />
-            <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
-            <Row className={cx('product-list')}>
-                {state.product.map((item, idx) => (
-                    <Product key={idx} product={item} handleShow={handleShow} />
-                ))}
-            </Row>
             <h1 className={cx('heading-slider')}>THAT'S MY BEAR</h1>
             <div className={cx('content_slider')}>
-                <div className={cx('background-slider')}></div>
                 <Carousel className={cx('container_slider')}>
                     {carousels.map((item, idx) => (
                         <Carousel.Item key={idx} className={cx('slider-item')}>
@@ -69,6 +59,12 @@ function NewIn() {
                     ))}
                 </Carousel>
             </div>
+            <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
+            <Row className={cx('product-list')}>
+                {state.product.map((item, idx) => (
+                    <Product key={idx} product={item} />
+                ))}
+            </Row>
             <div className={cx('content')}>
                 <div className={cx('background-image')}></div>
                 <div className={cx('content-image')}>
@@ -84,7 +80,6 @@ function NewIn() {
                     </div>
                 </div>
             </div>
-            {show && <ModalCart show={show} handleCloseShow={handleCloseShow} />}
         </div>
     );
 }

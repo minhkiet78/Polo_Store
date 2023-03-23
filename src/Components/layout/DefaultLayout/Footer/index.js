@@ -103,9 +103,6 @@ function Footer() {
                         ))}
                     </div>
                 </div>
-                <div className={cx('license')}>
-                    <h2 className={cx('heading_footer')}>© Bản quyền thuộc về HAPPYHOW.vn All rights reserved</h2>
-                </div>
             </div>
             <div className={cx('col-6', 'netword')}>
                 <h2 className={cx('heading')}>KẾT NỐI VỚI CHÚNG TÔI </h2>
@@ -120,13 +117,24 @@ function Footer() {
                     <input className={cx('input-email')} placeholder="Địa chỉ email của bạn"></input>
                     <button className={cx('btn-apply')}>Áp dụng</button>
                 </div>
-                <h2 className={cx('heading')}>PHƯƠNG THỨC THANH TOÁN ONLINE</h2>
+                {/* <h2 className={cx('heading')}>PHƯƠNG THỨC THANH TOÁN ONLINE</h2>
                 <div className={cx('pay')}>
-                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-visa.svg" />
-                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-vnpay.svg" />
-                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-momo.svg" />
-                    <img src="https://www.happyhow.me/1428355432291766272/d/images/icon-mastercard.svg" />
-                </div>
+                    <img
+                        className={cx('pay_item')}
+                        src="https://www.freepnglogos.com/uploads/visa-and-mastercard-logo-26.png"
+                    />
+                    <img
+                        className={cx('pay_item')}
+                    />
+                    <img
+                        className={cx('pay_item')}
+                        src="https://www.happyhow.me/1428355432291766272/d/images/icon-momo.svg"
+                    />
+                    <img
+                        className={cx('pay_item')}
+                        src="https://www.happyhow.me/1428355432291766272/d/images/icon-mastercard.svg"
+                    />
+                </div> */}
             </div>
         </div>
     );

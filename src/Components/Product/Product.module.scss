@@ -75,10 +75,11 @@
     display: block;
     position: absolute;
     height: 1px;
-    background-color: #212121;
+    background-color: var(--primary);
     left: 0;
     right: 0;
-    top: 5px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .ticker {
     position: absolute;

@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './Allproduct.module.scss';
 import classNames from 'classnames/bind';
 import { Row } from 'react-bootstrap';
 import Slider from '~/Components/layout/DefaultLayout/Slider';
 import Product from '~/Components/Product';
-import ModalCart from '~/Components/Support/ModalCart';
 import useStore from '~/store';
 
 const cx = classNames.bind(styles);
 
 function Allproduct() {
-    const [state, dispatch] = useStore();
-    const [show, setShow] = useState(false);
+    const [state] = useStore();
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
 
-    const handleShow = () => {
-        setShow(true);
-    };
-    const handleCloseShow = () => setShow(false);
     return (
         <div className={cx('wrapper')}>
             <Slider children={require('src/asetss/image/slider.jpeg')} />
@@ -55,7 +49,7 @@ function Allproduct() {
                 <h2 className={cx('new-product')}>NEW COLLECTION</h2>
                 <Row className={cx('product-list')}>
                     {state.product.map((item, idx) => (
-                        <Product key={idx} product={item} handleShow={handleShow} />
+                        <Product key={idx} product={item} />
                     ))}
                 </Row>
             </section>
@@ -64,7 +58,7 @@ function Allproduct() {
                 <h2 className={cx('new-product')}>ORIGINAL POLO</h2>
                 <Row className={cx('product-list')}>
                     {state.newProduct.map((item, idx) => (
-                        <Product key={idx} product={item} handleShow={handleShow} />
+                        <Product key={idx} product={item} />
                     ))}
                 </Row>
             </section>
@@ -72,11 +66,10 @@ function Allproduct() {
                 <h2 className={cx('new-product')}>T-SHIRT & BOXER</h2>
                 <Row className={cx('product-list')}>
                     {state.product_thun.map((item, idx) => (
-                        <Product key={idx} product={item} handleShow={handleShow} />
+                        <Product key={idx} product={item} />
                     ))}
                 </Row>
             </section>
-            {show && <ModalCart show={show} handleCloseShow={handleCloseShow} />}
         </div>
     );
 }

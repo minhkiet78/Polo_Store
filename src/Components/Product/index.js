@@ -1,6 +1,6 @@
 import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { activeProduct } from '~/store/action';
+import { activeProduct, setModalCart, setModalLogin } from '~/store/action';
 import { Col } from 'react-bootstrap';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
@@ -8,12 +8,16 @@ import helper from '../Support/helper';
 import useStore from '~/store';
 
 const cx = classNames.bind(styles);
-function Product({ product, handleShow }) {
+function Product({ product }) {
     const [state, dispatch] = useStore();
 
     const handleAddShop = () => {
-        dispatch(activeProduct(product));
-        handleShow();
+        if (localStorage.getItem('user-login')) {
+            dispatch(activeProduct(product));
+            dispatch(setModalCart(true));
+        } else {
+            dispatch(setModalLogin(true));
+        }
     };
     return (
         <Col xs="6" md="3">

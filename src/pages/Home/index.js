@@ -1,51 +1,15 @@
-import { useEffect, useState } from 'react';
-
+import { useEffect } from 'react';
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGift, faRotate, faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import { Carousel, Row, Col } from 'react-bootstrap';
-import ModalCart from '~/Components/Support/ModalCart';
 import ButtonComponent from '~/Components/ButtonComponent';
 import useStore from '~/store';
 import Product from '~/Components/Product';
 
 const cx = classNames.bind(styles);
-const search = [
-    {
-        title: 'áo gấu',
-        to: '/',
-    },
-    {
-        title: 'dep',
-        to: '/',
-    },
-    {
-        title: 'polo trơn',
-        to: '/',
-    },
-    {
-        title: 'mẫu mới',
-        to: '/',
-    },
-    {
-        title: 'polo dylen',
-        to: '/',
-    },
-    {
-        title: 'nelux',
-        to: '/',
-    },
-    {
-        title: 'polo gấu',
-        to: '/',
-    },
-    {
-        title: 'new',
-        to: '/',
-    },
-];
 
 const category = [
     {
@@ -126,15 +90,10 @@ const carousels = [
 function Home() {
     const [state] = useStore();
     const newProduct = state.product.slice(0, 4);
-    const [show, setShow] = useState(false);
 
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
-    const handleShow = () => {
-        setShow(true);
-    };
-    const handleCloseShow = () => setShow(false);
     return (
         <div className={cx('wrapper')}>
             <Carousel>
@@ -218,7 +177,7 @@ function Home() {
                     <div className={cx('background-newproduct')}></div>
                     <Row className={cx('list-product')}>
                         {newProduct.map((item, idx) => (
-                            <Product key={idx} product={item} handleShow={handleShow} />
+                            <Product key={idx} product={item} />
                         ))}
                     </Row>
                 </div>
@@ -266,14 +225,6 @@ function Home() {
                     </div>
                 </div> */}
 
-                <h2 className={cx('heading-search')}>TÌM KIẾM NHIỀU NHẤT</h2>
-                <div className={cx('list-search')}>
-                    {search.map((item, idx) => (
-                        <ButtonComponent className={cx('btn-search')} to={item.to} key={idx}>
-                            {item.title}
-                        </ButtonComponent>
-                    ))}
-                </div>
                 <div className={cx('content', 'content-image')}>
                     <div className={cx('headingall')}>
                         <div>
@@ -328,7 +279,6 @@ function Home() {
                     </Row>
                 </div>
             </div>
-            {show && <ModalCart show={show} handleCloseShow={handleCloseShow} />}
         </div>
     );
 }

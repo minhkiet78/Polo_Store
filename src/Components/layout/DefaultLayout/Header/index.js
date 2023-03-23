@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Fragment, useState } from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import useStore from '~/store';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import Button from '~/Components/ButtonComponent';
+import { Button } from 'react-bootstrap';
+import ButtonComponent from '~/Components/ButtonComponent';
+import { setModalLogin } from '~/store/action';
 
 const cx = classNames.bind(styles);
 const nav_items = [
@@ -36,22 +38,10 @@ const nav_items = [
     },
 ];
 
-function Header({ setLogin, setCart }) {
-    const [btn_menu, setBtn_Menu] = useState(nav_items);
+function Header({ setCart }) {
     const location = useLocation();
-    const handleClick = (idx) => {
-        let temp = [...btn_menu];
-        for (const itemp of temp) {
-            itemp.classe = '';
-        }
-        temp[idx].classe = 'active';
-        console.log(temp);
-        setBtn_Menu([...temp]);
-    };
-    const handleLogin = () => {
-        setLogin(true);
-    };
-
+    const [state, dispatch] = useStore();
+    const [isLogin, setIsLogin] = useState(localStorage.getItem('user-login'));
     const handleCart = () => {
         setCart(true);
     };
@@ -69,23 +59,32 @@ function Header({ setLogin, setCart }) {
                 </Link>
                 <div className={cx('search')}>
                     <input placeholder="Tìm Sản phầm và cửa hàng"></input>
-                    <FontAwesomeIcon className={cx('icon-search')} icon={faMagnifyingGlass} />
+                    <button className={cx('btn-search')}>
+                        <FontAwesomeIcon className={cx('icon-search')} icon={faMagnifyingGlass} />
+                    </button>
                 </div>
                 <div className={cx('action-header')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faCartShopping} onClick={handleCart} />
-                    <FontAwesomeIcon className={cx('icon')} icon={faUser} onClick={handleLogin} />
+                    {isLogin ? (
+                        <Fragment>
+                            <FontAwesomeIcon className={cx('icon')} icon={faCartShopping} onClick={handleCart} />
+                            <FontAwesomeIcon className={cx('icon')} icon={faUser} style={{ marginLeft: '30px' }} />
+                        </Fragment>
+                    ) : (
+                        <Button variant="success" onClick={() => dispatch(setModalLogin(true))}>
+                            Đăng nhập
+                        </Button>
+                    )}
                 </div>
             </div>
             <div className={cx('nav-header')}>
-                {btn_menu.map((item, idx) => (
-                    <Button
-                        className={cx(item.classe, 'nav-item')}
+                {nav_items.map((item, idx) => (
+                    <ButtonComponent
+                        className={cx(item.to === location.pathname ? 'active' : '', 'nav-item')}
                         key={idx}
                         to={item.to}
-                        onClick={() => handleClick(idx)}
                     >
                         {item.title}
-                    </Button>
+                    </ButtonComponent>
                 ))}
             </div>
         </header>

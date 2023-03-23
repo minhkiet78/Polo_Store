@@ -133,7 +133,8 @@
         font-size: 20px;
         width: 60px;
         height: 60px;
-        left: 184px;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: -30px;
         border-radius: 50%;
         background-color: var(--primary);
@@ -365,8 +366,11 @@
             font-size: 20px;
             color: #fff;
             border-radius: 4px;
+            transition: 0.5s ease;
+
             &:hover {
-                // animation: top;
+                background-color: var(--primary);
+                transform: scale(1.04);
             }
         }
     }

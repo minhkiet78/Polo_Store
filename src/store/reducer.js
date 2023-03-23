@@ -1,7 +1,18 @@
-import { ACTIVE_PRODUCT, ADD_CART, SHOW_TOAST, REMOVE_CART } from './contains';
+import {
+    ACTIVE_PRODUCT,
+    ADD_CART,
+    SHOW_TOAST,
+    REMOVE_CART,
+    EDIT_CART,
+    SET_MODAL_CART,
+    SET_MODAL_lOGIN,
+} from './contains';
 
 const initState = {
     productActive: null,
+    isEdit: false,
+    modalCart: false,
+    modalLogin: false,
     toast: null,
     listCard: [],
     product: [
@@ -310,13 +321,27 @@ function reducer(state, action) {
                 ...state,
                 productActive: action.payload,
             };
+        case SET_MODAL_CART:
+            return {
+                ...state,
+                modalCart: action.payload,
+            };
+        case SET_MODAL_lOGIN:
+            return {
+                ...state,
+                modalLogin: action.payload,
+            };
         case ADD_CART:
             let check = true;
-            for (const i = 0; i < state.listCard.length; i++) {
+            for (let i = 0; i < state.listCard.length; i++) {
                 if (state.listCard[i].id === action.payload.id) {
                     check = false;
-                    state.listCard[i].quantity += Number(action.payload.quantity);
-                    state.listCard[i].total += action.payload.total;
+                    if (state.isEdit) {
+                        state.listCard[i] = action.payload;
+                    } else {
+                        state.listCard[i].quantity += Number(action.payload.quantity);
+                        state.listCard[i].total += action.payload.total;
+                    }
                     break;
                 }
             }
@@ -330,6 +355,11 @@ function reducer(state, action) {
                     ...state,
                 };
             }
+        case EDIT_CART:
+            return {
+                ...state,
+                isEdit: action.payload,
+            };
         case REMOVE_CART:
             const newData = state.listCard.filter((item) => item.id !== action.payload);
             return {
@@ -337,7 +367,7 @@ function reducer(state, action) {
                 listCard: newData,
             };
         case SHOW_TOAST:
-            if (action.payload != null) {
+            if (action.payload) {
                 return {
                     ...state,
                     toast: {

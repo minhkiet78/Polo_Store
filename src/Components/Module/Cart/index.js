@@ -3,8 +3,16 @@ import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 import useStore from '~/store';
 import helper from '~/Components/Support/helper';
+import { removeCart, showToast } from '~/store/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faCartArrowDown, faClose, faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowRight,
+    faCartArrowDown,
+    faClose,
+    faPenToSquare,
+    faTrash,
+    faTruckFast,
+} from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 function Cart({ isShow, setShow }) {
@@ -14,15 +22,21 @@ function Cart({ isShow, setShow }) {
     useEffect(() => {
         setPayment(state.listCard.reduce((total, curr) => total + curr.total, 0));
     }, [state.listCard]);
+
     const handleClose = () => {
         setShow(false);
+    };
+
+    const handleRomoveCart = (id) => {
+        dispatch(removeCart(id));
+        dispatch(showToast({ type: 'success', message: 'Xóa đơn hàng thành công !' }));
     };
     return (
         <div className={cx('wrapper', isShow ? 'active' : '')}>
             <div className={cx('heading')}>
                 <h3>GIỎ HÀNG CỦA BẠN</h3>
                 <p>({state.listCard.length} sản phẩm)</p>
-                <FontAwesomeIcon icon={faClose} onClick={handleClose} />
+                <FontAwesomeIcon className={cx('icon-close')} icon={faClose} onClick={handleClose} />
             </div>
             <div className={cx('sub-heading')}>
                 <FontAwesomeIcon icon={faTruckFast} />
@@ -44,9 +58,20 @@ function Cart({ isShow, setShow }) {
                                     <p>
                                         Số lượng: <span>{product.quantity}</span>
                                     </p>
-                                    <p>
-                                        Tổng cộng: <span>{helper.formatMoney(product.total)}</span>
-                                    </p>
+                                    <div className={cx('content-action')}>
+                                        <p>
+                                            Tổng cộng: <span>{helper.formatMoney(product.total)}</span>
+                                        </p>
+                                        <div className={cx('group-action')}>
+                                            <FontAwesomeIcon className={cx('icon', 'icon-edit')} icon={faPenToSquare} />
+                                            <FontAwesomeIcon
+                                                className={cx('icon', 'icon-delete')}
+                                                icon={faTrash}
+                                                onClick={() => handleRomoveCart(product.id)}
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* <Button variant="primary">Thanh toán</Button> */}
                                 </div>
                             </div>
                         ))}

@@ -1,6 +1,7 @@
 import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { activeProduct } from '~/store/action';
+import { Col } from 'react-bootstrap';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import helper from '../Support/helper';
@@ -15,11 +16,11 @@ function Product({ product, handleShow }) {
         handleShow();
     };
     return (
-        <div className={cx('col-3')}>
+        <Col xs="6" md="3">
             <div className={cx('product')}>
                 <img className={cx('product-image')} src={product.image}></img>
-                {product.popular && <span className={cx('ticker', 'ticker_popular')}>Popular</span>}
-                {product.new && <span className={cx('ticker', 'ticker_new')}>New</span>}
+                {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
+                {product.new && <span className={cx('ticker', 'ticker_new')}>Mới</span>}
                 <div className={cx('group-action')}>
                     <FontAwesomeIcon className={cx('action_icon', 'icon_heart')} icon={faHeart} />
                     <FontAwesomeIcon
@@ -35,7 +36,7 @@ function Product({ product, handleShow }) {
                     <span className={cx('sale')}>{helper.formatMoney(299000)}</span>
                 </div>
             </div>
-        </div>
+        </Col>
     );
 }
 

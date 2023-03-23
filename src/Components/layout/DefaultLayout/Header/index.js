@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -37,6 +38,7 @@ const nav_items = [
 
 function Header({ setLogin, setCart }) {
     const [btn_menu, setBtn_Menu] = useState(nav_items);
+    const location = useLocation();
     const handleClick = (idx) => {
         let temp = [...btn_menu];
         for (const itemp of temp) {

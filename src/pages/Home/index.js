@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGift, faRotate, faTruckFast } from '@fortawesome/free-solid-svg-icons';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Row, Col } from 'react-bootstrap';
 import ModalCart from '~/Components/Support/ModalCart';
 import ButtonComponent from '~/Components/ButtonComponent';
 import useStore from '~/store';
@@ -51,12 +51,12 @@ const category = [
     {
         img: require('src/asetss/image/danhmuc/polo.png'),
         title: 'ÁO POLO',
-        to: '/polo',
+        to: '/allproduct#polo-product',
     },
     {
         img: require('src/asetss/image/danhmuc/aothun.jpeg'),
         title: 'ÁO THUN',
-        to: '/aothun',
+        to: '/allproduct#boxer-product',
     },
     {
         img: require('src/asetss/image/danhmuc/quanboxer.jpeg'),
@@ -131,7 +131,6 @@ function Home() {
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
-
     const handleShow = () => {
         setShow(true);
     };
@@ -168,9 +167,9 @@ function Home() {
                 <h1 className={cx('heading-category')}>DANH MỤC BẠN CẦN</h1>
             </div>
             <div className={cx('container')}>
-                <div className={cx('row', 'row-category')}>
+                <Row className={cx('row-category')}>
                     {category.map((item, idx) => (
-                        <div key={idx} className={cx('col-3', 'category')}>
+                        <Col xs="3" key={idx} className={cx('category')}>
                             <img className={cx('image')} src={item.img} />
                             <div className={cx('image_action')}>
                                 <span className={cx('title')}>{item.title}</span>
@@ -178,23 +177,23 @@ function Home() {
                                     Xem ngay
                                 </ButtonComponent>
                             </div>
-                        </div>
+                        </Col>
                     ))}
-                </div>
+                </Row>
                 <div className={cx('content')}>
-                    <div className={cx('row', 'row_process')}>
+                    <Row className={cx('row_process')}>
                         {procedure.map((item, idx) => (
-                            <div key={idx} className={cx('col-4', 'procedure')}>
+                            <Col xs="4" key={idx} className={cx('procedure')}>
                                 <div className={cx('procedure-image')} style={{ backgroundImage: `url(${item.img})` }}>
                                     <div className={cx('box-icon')}>{item.iocn}</div>
                                 </div>
                                 <h2 className={cx('procedure-heading')}>{item.title}</h2>
                                 <p className={cx('sub-heading')}>{item.sub_title}</p>
-                            </div>
+                            </Col>
                         ))}
-                    </div>
-                    <div className={cx('row', 'process')}>
-                        <div className={cx('col-8')}>
+                    </Row>
+                    <Row className={cx('process')}>
+                        <Col xs="8">
                             <video
                                 className={cx('video-process')}
                                 src={require('src/asetss/videos/video_process.mp4')}
@@ -205,23 +204,23 @@ function Home() {
                             <ButtonComponent className={cx('btn-link2')} to={'/newin'}>
                                 TRẢI NGHIỆM NGAY
                             </ButtonComponent>
-                        </div>
-                        <div className={cx('col-4')}>
+                        </Col>
+                        <Col xs="4">
                             <img
                                 className={cx('image-process')}
                                 src={require('src/asetss/image/procedure/quytrinh.png')}
                             />
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
 
                 <div className={cx('content-newproduct')}>
                     <div className={cx('background-newproduct')}></div>
-                    <div className={cx('row', 'list-product')}>
+                    <Row className={cx('list-product')}>
                         {newProduct.map((item, idx) => (
                             <Product key={idx} product={item} handleShow={handleShow} />
                         ))}
-                    </div>
+                    </Row>
                 </div>
                 <div className={cx('d-flex', 'justify-content-center')}>
                     <ButtonComponent className={cx('btn-tronbo')} to={'/allproduct'}>
@@ -311,11 +310,10 @@ function Home() {
                     </p>
                 </div>
                 <div className={cx('wrapper-netword')}>
-                    <div className={cx('background-image')}></div>
-                    <div className={cx('row')}>
+                    <Row>
                         {image_netword.map((item, idx) => (
-                            <div className={cx('col-4')}>
-                                <div className={cx('netword-item')} key={idx}>
+                            <Col xs="4" key={idx}>
+                                <div className={cx('netword-item')}>
                                     <ButtonComponent className={cx('image-link')} to={item.to}>
                                         <img src={item.image} />
                                     </ButtonComponent>
@@ -325,9 +323,9 @@ function Home() {
                                         Khám phá ngay
                                     </ButtonComponent>
                                 </div>
-                            </div>
+                            </Col>
                         ))}
-                    </div>
+                    </Row>
                 </div>
             </div>
             {show && <ModalCart show={show} handleCloseShow={handleCloseShow} />}

@@ -75,7 +75,10 @@ function Footer() {
                 <div className={cx('row')}>
                     <div className={cx('col-4')}>
                         <div className={cx('logo')}>
-                            <img src="https://happyhow.me/1428355432291766272/images/22222.svg" alt="HAPPYHOW" />
+                            <img
+                                src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
+                                alt="HAPPYHOW"
+                            />
                         </div>
                         {list1.map((item, idx) => (
                             <Button className={cx('link-item')} to={item.to} key={idx}>

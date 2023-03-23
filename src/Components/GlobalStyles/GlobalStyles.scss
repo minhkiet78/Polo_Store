@@ -23,6 +23,9 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
+section {
+    min-height: 100vh;
+}
 button,
 input,
 [tabindex] {

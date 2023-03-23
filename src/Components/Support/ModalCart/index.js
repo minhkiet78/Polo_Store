@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './ModalCart.module.scss';
 import useStore from '~/store';
 import helper from '../helper';
-import { addCard } from '~/store/action';
+import { addCard, showToast } from '~/store/action';
 
 const cx = classNames.bind(styles);
 function ModalCart({ show, handleCloseShow }) {
@@ -24,6 +24,7 @@ function ModalCart({ show, handleCloseShow }) {
             total,
         };
         dispatch(addCard(payload));
+        dispatch(showToast({ type: 'success', message: 'Thêm đơn hàng thành công!' }));
         handleCloseShow();
     };
     return (
@@ -56,10 +57,10 @@ function ModalCart({ show, handleCloseShow }) {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseShow}>
-                    Cancle
+                    Hủy
                 </Button>
                 <Button variant="primary" onClick={handleAccept}>
-                    Accept
+                    Xác nhận
                 </Button>
             </Modal.Footer>
         </Modal>

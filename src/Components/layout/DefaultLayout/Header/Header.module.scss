@@ -61,7 +61,7 @@
             bottom: 8px;
             left: 0;
             content: '';
-            width: 2px;
+            width: 1px;
             background-color: #bbb8b8;
         }
         .icon-search {
@@ -71,17 +71,53 @@
     .action-header {
         display: flex;
         justify-content: space-around;
+        align-items: center;
+        gap: 30px;
         .icon {
             font-size: 25px;
             cursor: pointer;
             color: rgb(75, 74, 74);
-            transition: 0.3s ease;
-            &:hover {
-                transform: scale(1.2);
-                color: var(--primary);
-            }
         }
     }
+}
+.cart {
+    position: relative;
+    span {
+        position: absolute;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary);
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: -2px;
+        right: -7px;
+    }
+}
+.wapper-search {
+    width: 400px;
+}
+.text-seach {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    span {
+        color: var(--primary);
+    }
+    &:hover {
+        background: #fcfcfc;
+    }
+}
+.heading {
+    padding-left: 10px;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
 }
 .nav-header {
     display: flex;

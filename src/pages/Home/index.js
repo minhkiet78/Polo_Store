@@ -8,6 +8,7 @@ import { Carousel, Row, Col } from 'react-bootstrap';
 import ButtonComponent from '~/Components/ButtonComponent';
 import useStore from '~/store';
 import Product from '~/Components/Product';
+import Heading from '~/Components/ButtonComponent/Heading';
 
 const cx = classNames.bind(styles);
 
@@ -104,18 +105,7 @@ function Home() {
                     </Carousel.Item>
                 ))}
             </Carousel>
-
-            <div className={cx('sub')}>
-                <h1 className={cx('sub-heading1')}>Mã ưu đãi</h1>
-                <div className={cx('sub-heading')}>
-                    <h1>G10</h1>
-                    <p>Giảm 10% cho đơn hàng đầu tiên</p>
-                </div>
-                <div className={cx('sub-heading')}>
-                    <h1>BEAR</h1>
-                    <p>Freeship cho đơn hàng từ 500k</p>
-                </div>
-            </div>
+            <Heading />
             <div
                 className={cx('d-flex', 'justify-content-center', 'align-items-center', 'flex-column')}
                 style={{ marginBottom: '40px' }}
@@ -251,14 +241,6 @@ function Home() {
                         <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
                         <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
                     </div>
-                    <p className={cx('comment')}>
-                        Niềm vui đơn giản là sự lựa chọn, và điều ấy trong thời trang <br />
-                        cũng không ngoại lệ.
-                    </p>
-                    <p className={cx('comment')}>
-                        Tìm được mẫu áo mình thích để mặc hoặc tặng cho người thân,
-                        <br /> HappyHow chính xác là nơi bạn muốn đến.
-                    </p>
                 </div>
                 <div className={cx('wrapper-netword')}>
                     <Row>

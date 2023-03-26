@@ -6,9 +6,11 @@ import {
     EDIT_CART,
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
+    CHECK_LOGIN,
 } from './contains';
 
 const initState = {
+    checkLogin: false,
     productActive: null,
     isEdit: false,
     modalCart: false,
@@ -316,6 +318,11 @@ const initState = {
 };
 function reducer(state, action) {
     switch (action.type) {
+        case CHECK_LOGIN:
+            return {
+                ...state,
+                checkLogin: action.payload,
+            };
         case ACTIVE_PRODUCT:
             return {
                 ...state,

@@ -15,8 +15,10 @@
         font-size: 18px;
         background-color: #f9f9f9;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
         .icon-close {
+            font-size: 26px;
             opacity: 0.6;
             transition: 0.3s ease;
             cursor: pointer;
@@ -30,10 +32,7 @@
             font-size: 18px;
         }
         p {
-            position: relative;
-            top: 3px;
-            margin-right: 60px;
-            font-size: 14px;
+            font-size: 16px;
         }
     }
     .sub-heading {

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import styles from './Allproduct.module.scss';
 import classNames from 'classnames/bind';
-import { Row } from 'react-bootstrap';
+import { Row, Col, Carousel } from 'react-bootstrap';
 import Slider from '~/Components/layout/DefaultLayout/Slider';
 import Product from '~/Components/Product';
 import useStore from '~/store';
-
+import Heading from '~/Components/ButtonComponent/Heading';
 const cx = classNames.bind(styles);
 
 function Allproduct() {
@@ -17,34 +17,33 @@ function Allproduct() {
     return (
         <div className={cx('wrapper')}>
             <Slider children={require('src/asetss/image/slider.jpeg')} />
-            <div className={cx('sub')}>
-                <h1 className={cx('sub-heading1')}>Mã ưu đãi</h1>
-                <div className={cx('sub-heading')}>
-                    <h1>G10</h1>
-                    <p>Giảm 10% cho đơn hàng đầu tiên</p>
-                </div>
-                <div className={cx('sub-heading')}>
-                    <h1>BEAR</h1>
-                    <p>Freeship cho đơn hàng từ 500k</p>
-                </div>
-            </div>
+            <Heading />
 
-            <div className={cx('baner')}>
-                <div className={cx('big-sale')}>
-                    <div className={cx('baner-sub')}>
-                        <div className={cx('baner-wrapper')}>
-                            <div className={cx('baner-heading')}>
-                                <h2>MỪNG ĐẠI THẮNG - SALE CỰC CĂNG</h2>
-                                <p>Duy nhất từ 25/5 - 31/5</p>
-                            </div>
-                            <p>GIẢM 50% ÁO THUN OVERSIZE</p>
-                            <p>BỘ SƯU TẬP POLO CHỈ TỪ 199K</p>
-                            <p>GIẢM 10% CHO TẤT CẢ SẢN PHẨM</p>
+            <Row className={cx('baner')}>
+                <Col xs="6" className={cx('baner-sub')}>
+                    <div className={cx('baner-wrapper')}>
+                        <div className={cx('baner-heading')}>
+                            <h2>MỪNG ĐẠI THẮNG - SALE CỰC CĂNG</h2>
+                            <p>Duy nhất từ 25/5 - 31/5</p>
                         </div>
+                        <p>GIẢM 50% ÁO THUN OVERSIZE</p>
+                        <p>BỘ SƯU TẬP POLO CHỈ TỪ 199K</p>
+                        <p>GIẢM 10% CHO TẤT CẢ SẢN PHẨM</p>
                     </div>
+                    <Carousel>
+                        {state.newProduct.slice(0, 1).map((item) => (
+                            <Carousel.Item key={item.id}>
+                                <Row>
+                                    <Product product={item} />
+                                </Row>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
+                </Col>
+                <Col xs="6">
                     <img className={cx('anh1')} src={require('src/asetss/image/anh1.jpeg')} />
-                </div>
-            </div>
+                </Col>
+            </Row>
             <section id="new-product">
                 <h2 className={cx('new-product')}>NEW COLLECTION</h2>
                 <Row className={cx('product-list')}>

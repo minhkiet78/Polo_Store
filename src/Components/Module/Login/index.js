@@ -6,15 +6,15 @@ import Button from '~/Components/ButtonComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal, Row, Col } from 'react-bootstrap';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
-import { showToast, setModalLogin } from '~/store/action';
+import { showToast, setModalLogin, checkLogin } from '~/store/action';
 const cx = classNames.bind(styles);
 const arrAcount = JSON.parse(localStorage.getItem('list-user'));
 function Login() {
     const [state, dispatch] = useStore();
     const userNameRef = useRef();
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [cpassword, setCpassword] = useState(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [cpassword, setCpassword] = useState('');
     const [register, setRegister] = useState(false);
 
     const handleSubmit = () => {
@@ -33,9 +33,10 @@ function Login() {
                 dispatch(showToast({ type: 'danger', message: 'Mật khẩu không khớp !' }));
             }
         } else {
-            if (checkLogin()) {
+            if (handleCheckLogin()) {
                 dispatch(showToast({ type: 'success', message: 'Đăng nhập thành công' }));
                 localStorage.setItem('user-login', true);
+                dispatch(checkLogin(true));
                 dispatch(setModalLogin(false));
             } else {
                 dispatch(showToast({ type: 'danger', message: 'Tài khoản hoặc mật khẩu không đúng' }));
@@ -45,7 +46,7 @@ function Login() {
     const validate = () => {
         return password === cpassword;
     };
-    const checkLogin = () => {
+    const handleCheckLogin = () => {
         let check = false;
         for (const user of arrAcount) {
             if (user.user_name === username && user.password === password) {

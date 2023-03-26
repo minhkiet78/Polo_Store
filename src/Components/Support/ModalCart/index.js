@@ -29,7 +29,6 @@ function ModalCart({ show, handleCloseShow }) {
     };
     return (
         <Modal centered show={show} onHide={handleCloseShow}>
-            <Modal.Header closeButton></Modal.Header>
             <Modal.Body>
                 <Row className={cx('data-product')}>
                     <Col xs="5">

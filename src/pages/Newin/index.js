@@ -5,8 +5,7 @@ import { Carousel, Row } from 'react-bootstrap';
 import { useEffect } from 'react';
 import useStore from '~/store';
 import Product from '~/Components/Product';
-import Slider from '~/Components/layout/DefaultLayout/Slider';
-
+import Heading from '~/Components/ButtonComponent/Heading';
 const carousels = [
     {
         image: require('src/asetss/image/Carousels/Newin/newin1.png'),
@@ -37,24 +36,16 @@ function NewIn() {
     return (
         <div className={cx('wrapper')}>
             <video className={cx('video')} src={require('src/asetss/videos/videonew_in.mp4')} controls autoPlay muted />
-            <div className={cx('sub')}>
-                <h1 className={cx('sub-heading1')}>Mã ưu đãi</h1>
-                <div className={cx('sub-heading')}>
-                    <h1>G10</h1>
-                    <p>Giảm 10% cho đơn hàng đầu tiên</p>
-                </div>
-                <div className={cx('sub-heading')}>
-                    <h1>BEAR</h1>
-                    <p>Freeship cho đơn hàng từ 500k</p>
-                </div>
-            </div>
+            <Heading />
             <h1 className={cx('heading-slider')}>THAT'S MY BEAR</h1>
             <div className={cx('content_slider')}>
                 <Carousel className={cx('container_slider')}>
                     {carousels.map((item, idx) => (
                         <Carousel.Item key={idx} className={cx('slider-item')}>
                             <img className={cx('d-block w-100', 'image-slider')} src={item.image} alt="First slide" />
-                            <Carousel.Caption>{/* <h3>{item.title}</h3> */}</Carousel.Caption>
+                            <Carousel.Caption>
+                                <h3>{item.title}</h3>
+                            </Carousel.Caption>
                         </Carousel.Item>
                     ))}
                 </Carousel>

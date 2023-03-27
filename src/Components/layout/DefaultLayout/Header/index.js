@@ -72,7 +72,11 @@ function Header({ setCart }) {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        setIsLogin(state.checkLogin);
+        if (localStorage.getItem('user-login')) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(state.checkLogin);
+        }
     }, [state.checkLogin]);
     const handleCart = () => {
         setCart(true);

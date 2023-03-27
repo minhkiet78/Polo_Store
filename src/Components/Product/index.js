@@ -6,6 +6,7 @@ import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import helper from '../Support/helper';
 import useStore from '~/store';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Product({ product }) {
@@ -22,7 +23,9 @@ function Product({ product }) {
     return (
         <Col xs="6" md="3">
             <div className={cx('product')}>
-                <img className={cx('product-image')} src={product.image}></img>
+                <Link to={`/product/detail/${product.id}`}>
+                    <img className={cx('product-image')} src={product.image}></img>
+                </Link>
                 {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
                 {product.new && <span className={cx('ticker', 'ticker_new')}>Mới</span>}
                 <div className={cx('group-action')}>
@@ -34,11 +37,13 @@ function Product({ product }) {
                     />
                 </div>
 
-                <div className={cx('product-name')}>{product.name}</div>
-                <div className={cx('group-price')}>
-                    <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>
-                    <span className={cx('sale')}>{helper.formatMoney(299000)}</span>
-                </div>
+                <Link to={`/product/detail/${product.id}`}>
+                    <div className={cx('product-name')}>{product.name}</div>
+                    <div className={cx('group-price')}>
+                        <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>
+                        <span className={cx('sale')}>{helper.formatMoney(299000)}</span>
+                    </div>
+                </Link>
             </div>
         </Col>
     );

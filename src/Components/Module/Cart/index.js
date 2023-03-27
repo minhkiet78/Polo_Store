@@ -59,9 +59,14 @@ function Cart({ isShow, setShow }) {
                                 <img src={product.image} className={cx('image-product')} />
                                 <div className={cx('content-product')}>
                                     <p>{product.name}</p>
-                                    <p>
-                                        Số lượng: <span>{product.quantity}</span>
-                                    </p>
+                                    <div className={cx('d-flex')} style={{ gap: '20px' }}>
+                                        <p>
+                                            Số lượng: <span>{product.quantity}</span>
+                                        </p>
+                                        <p>
+                                            Size: <span>{product.size.toUpperCase()}</span>
+                                        </p>
+                                    </div>
                                     <div className={cx('content-action')}>
                                         <p>
                                             Tổng cộng: <span>{helper.formatMoney(product.total)}</span>

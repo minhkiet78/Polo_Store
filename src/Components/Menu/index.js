@@ -16,6 +16,7 @@ function Menu({ children, listMenu }) {
         if (type === 'logout') {
             dispatch(checkLogin(false));
             dispatch(showToast({ type: 'success', message: 'Đăng xuất thành công ' }));
+            localStorage.removeItem('user-login');
         }
     };
     const renderItem = () => {

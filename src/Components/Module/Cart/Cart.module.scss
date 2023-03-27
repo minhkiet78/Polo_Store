@@ -37,6 +37,7 @@
     }
     .sub-heading {
         display: flex;
+        gap: 10px;
         background-color: rgb(119, 116, 116);
         color: #fff;
         font-size: 12px;
@@ -44,7 +45,7 @@
         align-items: center;
         p {
             margin: 0;
-            margin-left: 10px;
+            font-size: 13px;
         }
     }
     .content-cart {

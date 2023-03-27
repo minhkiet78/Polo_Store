@@ -14,9 +14,14 @@
     scroll-behavior: smooth;
 }
 html {
-    font-size: 16px;
 }
-
+a {
+    text-decoration: none;
+    color: var(--text-corlor);
+    &:hover {
+        color: var(--text-corlor);
+    }
+}
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;

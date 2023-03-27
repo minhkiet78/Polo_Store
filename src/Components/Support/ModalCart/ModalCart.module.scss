@@ -31,3 +31,31 @@
     flex-direction: column;
     justify-content: center;
 }
+.size-product {
+    display: flex;
+    gap: 12px;
+    font-size: 18px;
+    margin: 30px 0;
+    span {
+        border: solid 1px #ccc;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        &:hover {
+            background: #fcfcfc;
+        }
+    }
+}
+.active {
+    background: var(--primary);
+    color: #fff;
+    &:hover {
+        background: var(--primary) !important;
+        color: #fff !important;
+    }
+}

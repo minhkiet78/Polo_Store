@@ -12,6 +12,7 @@ function ModalCart({ show, handleCloseShow }) {
     const product = state.productActive;
 
     const [number, setNumber] = useState(state.isEdit ? product.quantity : 1);
+    const [size, setSize] = useState('s');
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
@@ -22,6 +23,7 @@ function ModalCart({ show, handleCloseShow }) {
             ...product,
             quantity: number,
             total,
+            size: size,
         };
         dispatch(addCard(payload));
         dispatch(showToast({ type: 'success', message: `${state.isEdit ? 'Cập nhật' : 'Thêm'} đơn hàng thành công!` }));
@@ -39,6 +41,17 @@ function ModalCart({ show, handleCloseShow }) {
                         <p className={cx('price-product')}>
                             Giá: <span>{helper.formatMoney(product.price)}</span>
                         </p>
+                        <div className={cx('size-product')}>
+                            <span className={cx(size === 's' ? 'active' : '')} onClick={() => setSize('s')}>
+                                S
+                            </span>
+                            <span className={cx(size === 'm' ? 'active' : '')} onClick={() => setSize('m')}>
+                                M
+                            </span>
+                            <span className={cx(size === 'l' ? 'active' : '')} onClick={() => setSize('l')}>
+                                L
+                            </span>
+                        </div>
                         <div className={cx('group-total')}>
                             <input
                                 type="number"

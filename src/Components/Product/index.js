@@ -41,7 +41,7 @@ function Product({ product }) {
                     <div className={cx('product-name')}>{product.name}</div>
                     <div className={cx('group-price')}>
                         <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>
-                        <span className={cx('sale')}>{helper.formatMoney(299000)}</span>
+                        {product.distanse && <span className={cx('sale')}>{helper.formatMoney(product.distanse)}</span>}
                     </div>
                 </Link>
             </div>

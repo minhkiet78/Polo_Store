@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styles from './Allproduct.module.scss';
 import classNames from 'classnames/bind';
 import { Row, Col, Carousel } from 'react-bootstrap';
+import listProduct from '~/store/listproduct';
 import Slider from '~/Components/layout/DefaultLayout/Slider';
 import Product from '~/Components/Product';
 import useStore from '~/store';
@@ -9,7 +10,6 @@ import Heading from '~/Components/ButtonComponent/Heading';
 const cx = classNames.bind(styles);
 
 function Allproduct() {
-    const [state] = useStore();
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
@@ -30,7 +30,7 @@ function Allproduct() {
                         <p>BỘ SƯU TẬP POLO CHỈ TỪ 199K</p>
                         <p>GIẢM 10% CHO TẤT CẢ SẢN PHẨM</p>
                     </div>
-                    <Carousel>
+                    {/* <Carousel>
                         {state.newProduct.slice(0, 1).map((item) => (
                             <Carousel.Item key={item.id}>
                                 <Row>
@@ -38,7 +38,7 @@ function Allproduct() {
                                 </Row>
                             </Carousel.Item>
                         ))}
-                    </Carousel>
+                    </Carousel> */}
                 </Col>
                 <Col xs="6">
                     <img className={cx('anh1')} src={require('src/asetss/image/anh1.jpeg')} />
@@ -47,26 +47,32 @@ function Allproduct() {
             <section id="new-product">
                 <h2 className={cx('new-product')}>NEW COLLECTION</h2>
                 <Row className={cx('product-list')}>
-                    {state.product.map((item, idx) => (
-                        <Product key={idx} product={item} />
-                    ))}
+                    {listProduct
+                        .filter((item) => item.category === 'product')
+                        .map((item, idx) => (
+                            <Product key={idx} product={item} />
+                        ))}
                 </Row>
             </section>
             <Slider children={require('src/asetss/image/slider2.jpeg')} />
             <section id="polo-product">
                 <h2 className={cx('new-product')}>ORIGINAL POLO</h2>
                 <Row className={cx('product-list')}>
-                    {state.newProduct.map((item, idx) => (
-                        <Product key={idx} product={item} />
-                    ))}
+                    {listProduct
+                        .filter((item) => item.category === 'new_product')
+                        .map((item, idx) => (
+                            <Product key={idx} product={item} />
+                        ))}
                 </Row>
             </section>
             <section id="boxer-product">
                 <h2 className={cx('new-product')}>T-SHIRT & BOXER</h2>
                 <Row className={cx('product-list')}>
-                    {state.product_thun.map((item, idx) => (
-                        <Product key={idx} product={item} />
-                    ))}
+                    {listProduct
+                        .filter((item) => item.category === 'product_thun')
+                        .map((item, idx) => (
+                            <Product key={idx} product={item} />
+                        ))}
                 </Row>
             </section>
         </div>

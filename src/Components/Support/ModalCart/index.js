@@ -12,7 +12,7 @@ function ModalCart({ show, handleCloseShow }) {
     const product = state.productActive;
 
     const [number, setNumber] = useState(state.isEdit ? product.quantity : 1);
-    const [size, setSize] = useState('s');
+    const [size, setSize] = useState(state.isEdit ? product.size : 's');
     const [total, setTotal] = useState(0);
 
     useEffect(() => {

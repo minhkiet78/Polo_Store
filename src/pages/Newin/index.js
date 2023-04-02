@@ -1,9 +1,8 @@
 import styles from './Newin.module.scss';
 import classNames from 'classnames/bind';
-
+import listProduct from '~/store/listproduct';
 import { Carousel, Row } from 'react-bootstrap';
 import { useEffect } from 'react';
-import useStore from '~/store';
 import Product from '~/Components/Product';
 import Heading from '~/Components/ButtonComponent/Heading';
 const carousels = [
@@ -27,8 +26,6 @@ const carousels = [
 const cx = classNames.bind(styles);
 
 function NewIn() {
-    const [state] = useStore();
-
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);
@@ -52,9 +49,11 @@ function NewIn() {
             </div>
             <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
             <Row className={cx('product-list')}>
-                {state.product.map((item, idx) => (
-                    <Product key={idx} product={item} />
-                ))}
+                {listProduct
+                    .filter((item) => item.category === 'product')
+                    .map((item, idx) => (
+                        <Product key={idx} product={item} />
+                    ))}
             </Row>
             <div className={cx('content')}>
                 <div className={cx('background-image')}></div>

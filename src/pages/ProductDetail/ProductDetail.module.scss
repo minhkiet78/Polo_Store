@@ -1,3 +1,11 @@
+.wrapper {
+    padding: 50px 0;
+    p,
+    li,
+    span {
+        font-size: 18px;
+    }
+}
 .container-product {
     display: flex;
     justify-content: space-between;
@@ -85,4 +93,9 @@
     width: 100%;
     padding: 10px;
     margin-bottom: 40px;
+}
+.instruct:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
 }

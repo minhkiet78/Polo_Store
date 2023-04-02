@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
-
+import listProduct from '~/store/listproduct';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGift, faRotate, faTruckFast } from '@fortawesome/free-solid-svg-icons';
 import { Carousel, Row, Col } from 'react-bootstrap';
 import ButtonComponent from '~/Components/ButtonComponent';
-import useStore from '~/store';
 import Product from '~/Components/Product';
 import Heading from '~/Components/ButtonComponent/Heading';
 
@@ -89,9 +88,7 @@ const carousels = [
     },
 ];
 function Home() {
-    const [state] = useStore();
-    const newProduct = state.product.slice(0, 4);
-
+    const newProduct = listProduct.filter((item) => item.category === 'new_product').slice(0, 4);
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
     }, []);

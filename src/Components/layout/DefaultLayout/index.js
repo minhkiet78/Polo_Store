@@ -21,23 +21,17 @@ function DefaultLayoute({ children }) {
             dispatch(editCart(false));
         }
     };
+    const handleToggleCart = () => {
+        setShowCart(!showCart);
+    };
     return (
         <div id="mainContent" className={cx('wrapper')}>
-            <Header
-                setCart={(valueChild) => {
-                    return setShowCart(valueChild);
-                }}
-            />
+            <Header handleToggleCart={handleToggleCart} />
             <div className={cx('container')}>{children}</div>
             <Footer />
             {state.modalLogin && <Login />}
+            {showCart && <Cart handleToggleCart={handleToggleCart} />}
 
-            <Cart
-                isShow={showCart}
-                setShow={(children) => {
-                    return setShowCart(children);
-                }}
-            />
             {state.modalCart && <ModalCart show handleCloseShow={handleCloseModal} />}
             {state.toast && (
                 <Toast

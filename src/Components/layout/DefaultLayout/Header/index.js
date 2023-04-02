@@ -17,6 +17,7 @@ import Tippy from '@tippyjs/react';
 import ButtonComponent from '~/Components/ButtonComponent';
 import Menu from '~/Components/Menu';
 import MenuItem from '~/Components/MenuItem';
+import listProduct from '~/store/listproduct';
 import Popper from '~/Components/Menu/Popper';
 import { setModalLogin } from '~/store/action';
 
@@ -65,7 +66,7 @@ const listMenu = [
         type: 'logout',
     },
 ];
-function Header({ setCart }) {
+function Header({ handleToggleCart }) {
     const location = useLocation();
     const [state, dispatch] = useStore();
     const [isLogin, setIsLogin] = useState(localStorage.getItem('user-login'));
@@ -78,9 +79,7 @@ function Header({ setCart }) {
             setIsLogin(state.checkLogin);
         }
     }, [state.checkLogin]);
-    const handleCart = () => {
-        setCart(true);
-    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner', 'container-fluid')}>
@@ -103,9 +102,12 @@ function Header({ setCart }) {
                                     Tìm tất cả các sản phẩm có từ '<span>{search}</span>'
                                 </div>
                                 <h5 className={cx('heading')}>Sản phẩm liên quan:</h5>
-                                {state.newProduct.slice(0, 5).map((item) => (
-                                    <MenuItem key={item.id} menu={item} />
-                                ))}
+                                {listProduct
+                                    .filter((item) => item.category === 'new_product')
+                                    .slice(0, 5)
+                                    .map((item) => (
+                                        <MenuItem key={item.id} menu={item} />
+                                    ))}
                             </Popper>
                         </div>
                     )}
@@ -126,7 +128,11 @@ function Header({ setCart }) {
                         <Fragment>
                             <span className={cx('cart')}>
                                 <span>{state.listCard.length}</span>
-                                <FontAwesomeIcon className={cx('icon')} icon={faCartShopping} onClick={handleCart} />
+                                <FontAwesomeIcon
+                                    className={cx('icon')}
+                                    icon={faCartShopping}
+                                    onClick={handleToggleCart}
+                                />
                             </span>
                             <Menu listMenu={listMenu}>
                                 <span>

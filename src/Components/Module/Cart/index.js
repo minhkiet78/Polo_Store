@@ -15,32 +15,29 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-function Cart({ isShow, setShow }) {
+function Cart({ handleToggleCart }) {
     const [state, dispatch] = useStore();
     const [payment, setPayment] = useState(0);
 
     useEffect(() => {
         setPayment(state.listCard.reduce((total, curr) => total + curr.total, 0));
-    }, [state.listCard]);
+    }, [state.listCard, state.totalQuantity]);
 
-    const handleClose = () => {
-        setShow(false);
-    };
     const handleEditcart = (product) => {
         dispatch(activeProduct(product));
         dispatch(editCart(true));
         dispatch(setModalCart(true));
     };
-    const handleRomoveCart = (id) => {
-        dispatch(removeCart(id));
+    const handleRomoveCart = (product) => {
+        dispatch(removeCart(product));
         dispatch(showToast({ type: 'success', message: 'Xóa đơn hàng thành công !' }));
     };
     return (
-        <div className={cx('wrapper', isShow ? 'active' : '')}>
+        <div className={cx('wrapper')}>
             <div className={cx('heading')}>
                 <h3>GIỎ HÀNG CỦA BẠN</h3>
                 <p>({state.listCard.length} sản phẩm)</p>
-                <FontAwesomeIcon className={cx('icon-close')} icon={faClose} onClick={handleClose} />
+                <FontAwesomeIcon className={cx('icon-close')} icon={faClose} onClick={handleToggleCart} />
             </div>
             <div className={cx('sub-heading')}>
                 <FontAwesomeIcon icon={faTruckFast} />
@@ -80,7 +77,7 @@ function Cart({ isShow, setShow }) {
                                             <FontAwesomeIcon
                                                 className={cx('icon', 'icon-delete')}
                                                 icon={faTrash}
-                                                onClick={() => handleRomoveCart(product.id)}
+                                                onClick={() => handleRomoveCart(product)}
                                             />
                                         </div>
                                     </div>

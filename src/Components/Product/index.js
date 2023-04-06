@@ -1,4 +1,4 @@
-import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { activeProduct, setModalCart, setModalLogin } from '~/store/action';
 import { Col } from 'react-bootstrap';
@@ -29,7 +29,6 @@ function Product({ product }) {
                 {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
                 {product.new && <span className={cx('ticker', 'ticker_new')}>Mới</span>}
                 <div className={cx('group-action')}>
-                    <FontAwesomeIcon className={cx('action_icon', 'icon_heart')} icon={faHeart} />
                     <FontAwesomeIcon
                         className={cx('action_icon', 'icon_shop')}
                         icon={faCartPlus}

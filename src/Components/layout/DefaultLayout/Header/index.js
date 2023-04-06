@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import useStore from '~/store';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightFromBracket,
@@ -12,14 +12,16 @@ import {
     faMagnifyingGlass,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
+import { DebounceInput } from 'react-debounce-input';
+import { setModalLogin } from '~/store/action';
+import helper from '~/Components/Support/helper';
 import Tippy from '@tippyjs/react';
 import ButtonComponent from '~/Components/ButtonComponent';
 import Menu from '~/Components/Menu';
 import MenuItem from '~/Components/MenuItem';
 import listProduct from '~/store/listproduct';
 import Popper from '~/Components/Menu/Popper';
-import { setModalLogin } from '~/store/action';
 
 const cx = classNames.bind(styles);
 const nav_items = [
@@ -38,16 +40,16 @@ const nav_items = [
         to: '/thatsmybear',
         classe: '',
     },
-    {
-        title: 'Cộng đồng',
-        to: '/congdong',
-        classe: '',
-    },
-    {
-        title: 'Chính sách',
-        to: '/chinhsach',
-        classe: '',
-    },
+    // {
+    //     title: 'Cộng đồng',
+    //     to: '/congdong',
+    //     classe: '',
+    // },
+    // {
+    //     title: 'Chính sách',
+    //     to: '/chinhsach',
+    //     classe: '',
+    // },
 ];
 const listMenu = [
     {
@@ -68,9 +70,12 @@ const listMenu = [
 ];
 function Header({ handleToggleCart }) {
     const location = useLocation();
+    const navigate = useNavigate();
     const [state, dispatch] = useStore();
     const [isLogin, setIsLogin] = useState(localStorage.getItem('user-login'));
     const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [result, setResult] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem('user-login')) {
@@ -80,6 +85,27 @@ function Header({ handleToggleCart }) {
         }
     }, [state.checkLogin]);
 
+    const handleSearch = (value) => {
+        setSearch(value);
+        setLoading(true);
+        if (value.length) {
+            setResult(
+                listProduct
+                    .filter((item) => helper.formatSearch(item.name).includes(helper.formatSearch(value)))
+                    .slice(0, 6),
+            );
+            setTimeout(() => {
+                setLoading(false);
+            }, 400);
+        } else {
+            setLoading(false);
+            setResult([]);
+        }
+    };
+    const handleClickSearch = (item) => {
+        setSearch('');
+        navigate(`/product/detail/${item.id}`);
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner', 'container-fluid')}>
@@ -92,32 +118,40 @@ function Header({ handleToggleCart }) {
                     </div>
                 </Link>
                 <Tippy
-                    visible={search ? true : false}
+                    visible={search.length ? true : false}
                     interactive
                     delay={[0, 300]}
                     render={(attrs) => (
                         <div className={cx('wapper-search')} tabIndex="-1" {...attrs}>
                             <Popper>
-                                <div className={cx('text-seach')}>
-                                    Tìm tất cả các sản phẩm có từ '<span>{search}</span>'
+                                <div className={cx('result-search')}>
+                                    <h5 className={cx('heading')}>Sản phẩm tìm kiếm:</h5>
+                                    {loading && (
+                                        <div className={cx('loading')}>
+                                            <Spinner animation="grow" size="xl" />
+                                        </div>
+                                    )}
+
+                                    {!loading &&
+                                        result.map((item) => (
+                                            <MenuItem
+                                                key={item.id}
+                                                menu={item}
+                                                onClick={() => handleClickSearch(item)}
+                                            />
+                                        ))}
                                 </div>
-                                <h5 className={cx('heading')}>Sản phẩm liên quan:</h5>
-                                {listProduct
-                                    .filter((item) => item.category === 'new_product')
-                                    .slice(0, 5)
-                                    .map((item) => (
-                                        <MenuItem key={item.id} menu={item} />
-                                    ))}
                             </Popper>
                         </div>
                     )}
                 >
                     <div className={cx('search')}>
-                        <input
+                        <DebounceInput
                             value={search}
+                            debounceTimeout={300}
                             placeholder="Tìm Sản phầm và cửa hàng"
-                            onChange={(e) => setSearch(e.target.value)}
-                        ></input>
+                            onChange={(e) => handleSearch(e.target.value)}
+                        />
                         <button className={cx('btn-search')}>
                             <FontAwesomeIcon className={cx('icon-search')} icon={faMagnifyingGlass} />
                         </button>

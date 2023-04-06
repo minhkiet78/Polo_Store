@@ -91,11 +91,15 @@
 }
 .btn-add {
     width: 100%;
-    padding: 10px;
+    padding: 20px !important;
     margin-bottom: 40px;
 }
 .instruct:hover {
     cursor: pointer;
     text-decoration: underline;
     color: blue;
+}
+.modal-heading {
+    width: 100%;
+    padding-left: 26px;
 }

@@ -78,7 +78,7 @@ const listProduct = [
         category: 'product',
     },
     {
-        id: 310,
+        id: 399,
         image: require('src/asetss/image/polo/polo10.jpeg'),
         name: 'Áo Polo Nam Floy Chất Vải CVC',
         price: 270000,
@@ -341,7 +341,7 @@ const listProduct = [
         category: 'product_thun',
     },
     {
-        id: 311,
+        id: 390,
         image: require('src/asetss/image/thun_nam/thun11.jpeg'),
         name: 'Áo Thun Nam Clas Chất Vải Cotton Compact',
         price: 179000,

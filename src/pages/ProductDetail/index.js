@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ProductDetail.module.scss';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faCartPlus, faTape } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,7 @@ import useStore from '~/store';
 import { addCard, showToast } from '~/store/action';
 import listProduct from '~/store/listproduct';
 import helper from '~/Components/Support/helper';
+import ModalSize from '~/Components/Support/ModalSize';
 const cx = classNames.bind(styles);
 
 const arrStar = [1, 1, 1, 1, 1];
@@ -48,11 +49,11 @@ const listImage = [
 function ProductDetail() {
     const params = useParams();
     const [productDetail, setProductDetail] = useState(null);
-
     const [state, dispatch] = useStore();
     const [size, setSize] = useState('m');
     const [quantity, setQuantity] = useState(1);
     const [image, setImage] = useState(listImage[0]);
+    const [show, setModalShow] = useState(false);
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
         setProductDetail(listProduct.filter((item) => item.id == params.id)[0]);
@@ -103,7 +104,9 @@ function ProductDetail() {
                             </p>
                             <div>
                                 <FontAwesomeIcon icon={faTape} className={cx('icon-size')} />
-                                <span className={cx('instruct')}>Hướng dẫn chọn size áo</span>
+                                <span className={cx('instruct')} onClick={() => setModalShow(true)}>
+                                    Hướng dẫn chọn size áo
+                                </span>
                             </div>
                             <div className={cx('group-action_number')}>
                                 <div>
@@ -130,7 +133,7 @@ function ProductDetail() {
                                     />
                                 </div>
                             </div>
-                            <Button variant="primary" className={cx('btn-add')} onClick={handleAdd}>
+                            <Button variant="success" className={cx('btn-add')} onClick={handleAdd}>
                                 Thêm vào giỏ hàng <FontAwesomeIcon icon={faCartPlus} />
                             </Button>
                         </div>
@@ -144,6 +147,32 @@ function ProductDetail() {
                     </Col>
                 </Row>
             )}
+            <Modal
+                show={show}
+                onHide={() => setModalShow(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter" className={cx('modal-heading')}>
+                        <div>
+                            <img
+                                src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
+                                style={{ width: '100px' }}
+                            />
+                            {productDetail && (
+                                <p className={cx('text-center')} style={{ fontSize: '20px' }}>
+                                    {productDetail.name}
+                                </p>
+                            )}
+                        </div>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ModalSize />
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }

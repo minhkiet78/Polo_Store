@@ -45,13 +45,11 @@ function reducer(state, action) {
             let check = true;
             for (let i = 0; i < state.listCard.length; i++) {
                 if (state.listCard[i].id === action.payload.id && state.listCard[i].size === action.payload.size) {
-                    console.log('do day');
                     check = false;
                     if (state.isEdit) {
                         state.listCard[i] = action.payload;
                     } else {
                         state.listCard[i].quantity += Number(action.payload.quantity);
-                        state.listCard[i].size = action.payload.size;
                         state.listCard[i].total += action.payload.total;
                     }
                     break;

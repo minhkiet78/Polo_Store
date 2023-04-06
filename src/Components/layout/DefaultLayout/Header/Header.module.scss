@@ -99,6 +99,15 @@
 }
 .wapper-search {
     width: 400px;
+    .result-search {
+        min-height: 200px;
+        .loading {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 .text-seach {
     font-size: 16px;

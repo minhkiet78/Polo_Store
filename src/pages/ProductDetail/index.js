@@ -10,6 +10,7 @@ import useStore from '~/store';
 import { addCard, showToast } from '~/store/action';
 import listProduct from '~/store/listproduct';
 import helper from '~/Components/Support/helper';
+import Product from '~/Components/Product';
 import ModalSize from '~/Components/Support/ModalSize';
 const cx = classNames.bind(styles);
 
@@ -88,7 +89,7 @@ function ProductDetail() {
                         </div>
                         <img className={cx('image-product')} src={image.value} />
                     </Col>
-                    <Col xs="6">
+                    <Col xs="6" style={{ position: 'relative' }}>
                         <div className={cx('content-product')}>
                             <h3 className={cx('heading')}>{productDetail.name}</h3>
                             <div style={{ marginTop: '20px' }}>
@@ -97,7 +98,7 @@ function ProductDetail() {
                                 ))}
                             </div>
                             <p>
-                                <span>{helper.formatMoney(productDetail.price)}</span>{' '}
+                                <span>Giá: {helper.formatMoney(productDetail.price)}</span>{' '}
                                 {productDetail.distanse && (
                                     <span>Giá niêm yết {helper.formatMoney(productDetail.distanse)}</span>
                                 )}
@@ -147,6 +148,17 @@ function ProductDetail() {
                     </Col>
                 </Row>
             )}
+            <div className={cx('list-new_product')}>
+                <h3>Bạn có thể thích:</h3>
+                <Row>
+                    {listProduct
+                        .filter((item) => item.category === 'new_product')
+                        .slice(0, 8)
+                        .map((product) => (
+                            <Product product={product} key={product.id} />
+                        ))}
+                </Row>
+            </div>
             <Modal
                 show={show}
                 onHide={() => setModalShow(false)}

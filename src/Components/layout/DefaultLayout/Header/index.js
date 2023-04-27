@@ -40,6 +40,11 @@ const nav_items = [
         to: '/thatsmybear',
         classe: '',
     },
+    {
+        title: 'Admin',
+        to: '/admin',
+        classe: '',
+    },
     // {
     //     title: 'Cộng đồng',
     //     to: '/congdong',

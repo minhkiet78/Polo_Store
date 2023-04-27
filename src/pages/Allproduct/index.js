@@ -1,18 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Allproduct.module.scss';
 import classNames from 'classnames/bind';
 import { Row, Col, Carousel } from 'react-bootstrap';
-import listProduct from '~/store/listproduct';
 import Slider from '~/Components/layout/DefaultLayout/Slider';
 import Product from '~/Components/Product';
 import useStore from '~/store';
 import Heading from '~/Components/ButtonComponent/Heading';
+
+import { getAllProduct } from '~/api/managermentProduct';
+
+// import {get}
 const cx = classNames.bind(styles);
 
 function Allproduct() {
+    const [listProduct, setListProduct] = useState([]);
+
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
+        getAll();
     }, []);
+
+    const getAll = async () => {
+        const res = await getAllProduct();
+        if (res.status === 200) {
+            setListProduct(res.data.data);
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>

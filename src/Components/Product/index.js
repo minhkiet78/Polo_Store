@@ -24,7 +24,7 @@ function Product({ product }) {
         <Col xs="6" md="3">
             <div className={cx('product')}>
                 <Link to={`/product/detail/${product.id}`}>
-                    <img className={cx('product-image')} src={product.image}></img>
+                    <img className={cx('product-image')} src={`http://localhost:3000/uploads/${product.image}`}></img>
                 </Link>
                 {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
                 {product.new && <span className={cx('ticker', 'ticker_new')}>Mới</span>}

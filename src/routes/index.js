@@ -1,6 +1,7 @@
 import Home from '~/pages/Home';
 import NewIn from '~/pages/Newin';
 import Allproduct from '~/pages/Allproduct';
+import Admin from '~/pages/Admin';
 // import CongDong from '~/pages/CongDong';
 // import ChinhSach from '~/pages/ChinhSach';
 import ThatsMyBear from '~/pages/Thatsmybear';
@@ -13,6 +14,7 @@ const publicRoutes = [
     // { path: '/chinhsach', component: ChinhSach },
     { path: '/thatsmybear', component: ThatsMyBear },
     { path: '/product/detail/:id', component: ProductDetail },
+    { path: '/admin', component: Admin },
 ];
 const privateRoutes = [];
 

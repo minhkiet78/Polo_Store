@@ -4,57 +4,69 @@ import { useState, useRef } from 'react';
 import useStore from '~/store';
 import Button from '~/Components/ButtonComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Modal, Row, Col } from 'react-bootstrap';
+import { Modal, Row, Col, Form } from 'react-bootstrap';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { showToast, setModalLogin, checkLogin } from '~/store/action';
+
+import { register, login } from '~/api/apiAuth';
 const cx = classNames.bind(styles);
-const arrAcount = JSON.parse(localStorage.getItem('list-user'));
 function Login() {
     const [state, dispatch] = useStore();
     const userNameRef = useRef();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [cpassword, setCpassword] = useState('');
-    const [register, setRegister] = useState(false);
+    const [is_register, setRegister] = useState(false);
 
-    const handleSubmit = () => {
-        if (register) {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (is_register) {
             if (validate()) {
-                const object = {
+                let payload = {
                     user_name: username,
-                    password: password,
+                    password,
+                    c_password: cpassword,
                 };
-                arrAcount.push(object);
-                localStorage.setItem('list-user', JSON.stringify(arrAcount));
-                dispatch(showToast({ type: 'success', message: 'Đăng ký thành công' }));
-                setRegister(false);
-                userNameRef.current.focus();
+
+                const res = await register(payload);
+                if (res.status == 200) {
+                    dispatch(showToast({ type: 'success', message: res.data.message }));
+                    setRegister(false);
+                    resetInput();
+                    userNameRef.current.focus();
+                } else {
+                    dispatch(showToast({ type: 'danger', message: res.data.message }));
+                }
             } else {
                 dispatch(showToast({ type: 'danger', message: 'Mật khẩu không khớp !' }));
             }
         } else {
-            if (handleCheckLogin()) {
-                dispatch(showToast({ type: 'success', message: 'Đăng nhập thành công' }));
-                localStorage.setItem('user-login', true);
+            let payload = {
+                user_name: username,
+                password,
+            };
+            const res = await login(payload);
+            if (res.status == 200) {
+                dispatch(showToast({ type: 'success', message: res.data.message }));
                 dispatch(checkLogin(true));
                 dispatch(setModalLogin(false));
             } else {
-                dispatch(showToast({ type: 'danger', message: 'Tài khoản hoặc mật khẩu không đúng' }));
+                dispatch(showToast({ type: 'danger', message: res.data.message }));
             }
         }
     };
     const validate = () => {
         return password === cpassword;
     };
-    const handleCheckLogin = () => {
-        let check = false;
-        for (const user of arrAcount) {
-            if (user.user_name === username && user.password === password) {
-                check = true;
-                break;
-            }
-        }
-        return check;
+
+    const resetInput = () => {
+        setUsername('');
+        setPassword('');
+        setCpassword('');
+    };
+    const handleChangeAuth = () => {
+        setRegister(!is_register);
+        resetInput();
     };
     return (
         <Modal centered show size="lg" onHide={() => dispatch(setModalLogin(false))}>
@@ -63,54 +75,63 @@ function Login() {
                 <div className={cx('wrapper')}>
                     <Row>
                         <Col xs="6" className={cx('content-text')}>
-                            <div className={cx('content-login')}>
-                                <div className={cx('logo')}>
-                                    <img
-                                        src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
-                                        alt="HAPPYHOW"
-                                    />
-                                </div>
-                                <input
-                                    className={cx('input')}
-                                    ref={userNameRef}
-                                    autoFocus
-                                    value={username}
-                                    placeholder="Tên tài khoản"
-                                    onChange={(e) => setUsername(e.target.value)}
-                                ></input>
-                                <input
-                                    className={cx('input')}
-                                    type="password"
-                                    value={password}
-                                    placeholder="Mật khẩu"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                ></input>
-                                {register && (
+                            <Form>
+                                <div className={cx('content-login')}>
+                                    <div className={cx('logo')}>
+                                        <img
+                                            src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
+                                            alt="HAPPYHOW"
+                                        />
+                                    </div>
+                                    <input
+                                        className={cx('input')}
+                                        ref={userNameRef}
+                                        autoFocus
+                                        value={username}
+                                        placeholder="Tên tài khoản"
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    ></input>
                                     <input
                                         className={cx('input')}
                                         type="password"
-                                        value={cpassword}
-                                        placeholder="Nhập lại mật khẩu"
-                                        onChange={(e) => setCpassword(e.target.value)}
+                                        value={password}
+                                        placeholder="Mật khẩu"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
                                     ></input>
-                                )}
+                                    {is_register && (
+                                        <input
+                                            className={cx('input')}
+                                            type="password"
+                                            value={cpassword}
+                                            placeholder="Nhập lại mật khẩu"
+                                            onChange={(e) => setCpassword(e.target.value)}
+                                            required
+                                        ></input>
+                                    )}
 
-                                <Button className={cx('btn-xacnhan')} onClick={handleSubmit}>
-                                    Xác nhận
-                                </Button>
-                                <div className={cx('sale')}>
-                                    <FontAwesomeIcon icon={faDeleteLeft} />
-                                    <p className={cx('text')}>Giảm 10% đơn hàng đầu tiên (Nhập mã G10)</p>
+                                    <Button
+                                        type="submit"
+                                        className={cx('btn-xacnhan')}
+                                        onClick={(e) => handleSubmit(e)}
+                                    >
+                                        Xác nhận
+                                    </Button>
+                                    <div className={cx('sale')}>
+                                        <FontAwesomeIcon icon={faDeleteLeft} />
+                                        <p className={cx('text')}>Giảm 10% đơn hàng đầu tiên (Nhập mã G10)</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className={cx('net-word')}>
-                                {!register && <p style={{ fontSize: '16px' }}>---------- Hoặc -----------</p>}
+                                <div className={cx('net-word')}>
+                                    {!is_register && <p style={{ fontSize: '16px' }}>---------- Hoặc -----------</p>}
 
-                                <Button className={cx('btn-register')} onClick={() => setRegister(!register)}>
-                                    {register ? 'Đăng nhập' : 'Đăng ký'}
-                                </Button>
-                            </div>
+                                    <Button className={cx('btn-register')} onClick={handleChangeAuth}>
+                                        {is_register ? 'Đăng nhập' : 'Đăng ký'}
+                                    </Button>
+                                </div>
+                            </Form>
                         </Col>
                         <Col xs="6">
                             <img

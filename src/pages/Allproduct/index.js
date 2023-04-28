@@ -32,32 +32,25 @@ function Allproduct() {
             <Slider children={require('src/asetss/image/slider.jpeg')} />
             <Heading />
 
-            <Row className={cx('baner')}>
-                <Col xs="6" className={cx('baner-sub')}>
-                    <div className={cx('baner-wrapper')}>
-                        <div className={cx('baner-heading')}>
-                            <h2>MỪNG ĐẠI THẮNG - SALE CỰC CĂNG</h2>
-                            <p>Duy nhất từ 25/5 - 31/5</p>
+            <div className="container">
+                <Row className={cx('baner')}>
+                    <Col xs="6" className={cx('baner-sub')}>
+                        <div className={cx('baner-wrapper')}>
+                            <div className={cx('baner-heading')}>
+                                <h2>MỪNG ĐẠI THẮNG - SALE CỰC CĂNG</h2>
+                                <p>Duy nhất từ 25/5 - 31/5</p>
+                            </div>
+                            <p>GIẢM 50% ÁO THUN OVERSIZE</p>
+                            <p>BỘ SƯU TẬP POLO CHỈ TỪ 199K</p>
+                            <p>GIẢM 10% CHO TẤT CẢ SẢN PHẨM</p>
                         </div>
-                        <p>GIẢM 50% ÁO THUN OVERSIZE</p>
-                        <p>BỘ SƯU TẬP POLO CHỈ TỪ 199K</p>
-                        <p>GIẢM 10% CHO TẤT CẢ SẢN PHẨM</p>
-                    </div>
-                    {/* <Carousel>
-                        {state.newProduct.slice(0, 1).map((item) => (
-                            <Carousel.Item key={item.id}>
-                                <Row>
-                                    <Product product={item} />
-                                </Row>
-                            </Carousel.Item>
-                        ))}
-                    </Carousel> */}
-                </Col>
-                <Col xs="6">
-                    <img className={cx('anh1')} src={require('src/asetss/image/anh1.jpeg')} />
-                </Col>
-            </Row>
-            <section id="new-product">
+                    </Col>
+                    <Col xs="6">
+                        <img className={cx('anh1')} src={require('src/asetss/image/anh1.jpeg')} />
+                    </Col>
+                </Row>
+            </div>
+            <section id="new-product" className="container">
                 <h2 className={cx('new-product')}>NEW COLLECTION</h2>
                 <Row className={cx('product-list')}>
                     {listProduct
@@ -68,7 +61,7 @@ function Allproduct() {
                 </Row>
             </section>
             <Slider children={require('src/asetss/image/slider2.jpeg')} />
-            <section id="polo-product">
+            <section id="polo-product" className="container">
                 <h2 className={cx('new-product')}>ORIGINAL POLO</h2>
                 <Row className={cx('product-list')}>
                     {listProduct
@@ -78,7 +71,7 @@ function Allproduct() {
                         ))}
                 </Row>
             </section>
-            <section id="boxer-product">
+            <section id="boxer-product" className="container">
                 <h2 className={cx('new-product')}>T-SHIRT & BOXER</h2>
                 <Row className={cx('product-list')}>
                     {listProduct

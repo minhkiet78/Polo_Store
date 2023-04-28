@@ -2,6 +2,7 @@ import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/Components/ButtonComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Row, Col } from 'react-bootstrap';
 import { faFacebookF, faInstagram, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(styles);
@@ -70,71 +71,57 @@ const list3 = [
 ];
 function Footer() {
     return (
-        <div className={cx('row', 'wrapper')}>
-            <div className={cx('col-6')}>
-                <div className={cx('row')}>
-                    <div className={cx('col-4')}>
-                        <div className={cx('logo')}>
-                            <img
-                                src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
-                                alt="HAPPYHOW"
-                            />
+        <div className={cx('wrapper')}>
+            <div className="container">
+                <Row>
+                    <Col xs="12" md="6">
+                        <div className={cx('row')}>
+                            <div className={cx('col-4')}>
+                                <div className={cx('logo')}>
+                                    <img
+                                        src="https://polostore.vn/wp-content/uploads/2021/10/logo-polostore-1.png"
+                                        alt="HAPPYHOW"
+                                    />
+                                </div>
+                                {list1.map((item, idx) => (
+                                    <Button className={cx('link-item')} to={item.to} key={idx}>
+                                        {item.title}
+                                    </Button>
+                                ))}
+                            </div>
+                            <div className={cx('col-4')}>
+                                <h2 className={cx('heading')}>HỖ TRỢ KHÁCH HÀNG</h2>
+                                {list2.map((item, idx) => (
+                                    <Button className={cx('link-item')} key={idx} to={item.to}>
+                                        {item.title}
+                                    </Button>
+                                ))}
+                            </div>
+                            <div className={cx('col-4')}>
+                                <h2 className={cx('heading')}>DỊCH VỤ KHÁCH HÀNG</h2>
+                                {list3.map((item, idx) => (
+                                    <Button className={cx('link-item')} key={idx} to={item.to}>
+                                        {item.title}
+                                    </Button>
+                                ))}
+                            </div>
                         </div>
-                        {list1.map((item, idx) => (
-                            <Button className={cx('link-item')} to={item.to} key={idx}>
-                                {item.title}
-                            </Button>
-                        ))}
-                    </div>
-                    <div className={cx('col-4')}>
-                        <h2 className={cx('heading')}>HỖ TRỢ KHÁCH HÀNG</h2>
-                        {list2.map((item, idx) => (
-                            <Button className={cx('link-item')} key={idx} to={item.to}>
-                                {item.title}
-                            </Button>
-                        ))}
-                    </div>
-                    <div className={cx('col-4')}>
-                        <h2 className={cx('heading')}>DỊCH VỤ KHÁCH HÀNG</h2>
-                        {list3.map((item, idx) => (
-                            <Button className={cx('link-item')} key={idx} to={item.to}>
-                                {item.title}
-                            </Button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-            <div className={cx('col-6', 'netword')}>
-                <h2 className={cx('heading')}>KẾT NỐI VỚI CHÚNG TÔI </h2>
-                <div className={cx('list-icon')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faFacebookF} />
-                    <FontAwesomeIcon className={cx('icon')} icon={faYoutube} />
-                    <FontAwesomeIcon className={cx('icon')} icon={faInstagram} />
-                    <FontAwesomeIcon className={cx('icon')} icon={faTiktok} />
-                </div>
-                <h2 className={cx('heading')}>ĐĂNG KÝ NHẬN TIN TỪ HAPPYHOW</h2>
-                <div className={cx('input')}>
-                    <input className={cx('input-email')} placeholder="Địa chỉ email của bạn"></input>
-                    <button className={cx('btn-apply')}>Áp dụng</button>
-                </div>
-                {/* <h2 className={cx('heading')}>PHƯƠNG THỨC THANH TOÁN ONLINE</h2>
-                <div className={cx('pay')}>
-                    <img
-                        className={cx('pay_item')}
-                        src="https://www.freepnglogos.com/uploads/visa-and-mastercard-logo-26.png"
-                    />
-                    <img
-                        className={cx('pay_item')}
-                    />
-                    <img
-                        className={cx('pay_item')}
-                        src="https://www.happyhow.me/1428355432291766272/d/images/icon-momo.svg"
-                    />
-                    <img
-                        className={cx('pay_item')}
-                        src="https://www.happyhow.me/1428355432291766272/d/images/icon-mastercard.svg"
-                    />
-                </div> */}
+                    </Col>
+                    <Col xs="12" md="6">
+                        <h2 className={cx('heading')}>KẾT NỐI VỚI CHÚNG TÔI </h2>
+                        <div className={cx('list-icon')}>
+                            <FontAwesomeIcon className={cx('icon')} icon={faFacebookF} />
+                            <FontAwesomeIcon className={cx('icon')} icon={faYoutube} />
+                            <FontAwesomeIcon className={cx('icon')} icon={faInstagram} />
+                            <FontAwesomeIcon className={cx('icon')} icon={faTiktok} />
+                        </div>
+                        <h2 className={cx('heading')}>ĐĂNG KÝ NHẬN TIN TỪ HAPPYHOW</h2>
+                        <div className={cx('input')}>
+                            <input className={cx('input-email')} placeholder="Địa chỉ email của bạn"></input>
+                            <button className={cx('btn-apply')}>Áp dụng</button>
+                        </div>
+                    </Col>
+                </Row>
             </div>
         </div>
     );

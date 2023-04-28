@@ -77,18 +77,18 @@ function Header({ handleToggleCart }) {
     const location = useLocation();
     const navigate = useNavigate();
     const [state, dispatch] = useStore();
-    const [isLogin, setIsLogin] = useState(localStorage.getItem('user-login'));
+    const [isLogin, setIsLogin] = useState(false);
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState([]);
 
     useEffect(() => {
-        if (localStorage.getItem('user-login')) {
+        if (localStorage.getItem('user_token')) {
             setIsLogin(true);
         } else {
-            setIsLogin(state.checkLogin);
+            setIsLogin(false);
         }
-    }, [state.checkLogin]);
+    }, []);
 
     const handleSearch = (value) => {
         setSearch(value);
@@ -113,7 +113,7 @@ function Header({ handleToggleCart }) {
     };
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('inner', 'container-fluid')}>
+            <div className={cx('inner', 'container')}>
                 <Link to={'/'}>
                     <div className={cx('logo')}>
                         <img
@@ -174,9 +174,13 @@ function Header({ handleToggleCart }) {
                                 />
                             </span>
                             <Menu listMenu={listMenu}>
-                                <span>
-                                    <FontAwesomeIcon className={cx('icon')} icon={faUser} />
-                                </span>
+                                <div
+                                    className={cx('avatar-user')}
+                                    style={{
+                                        backgroundImage:
+                                            'url(https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-Facebook.jpg?resize=800%2C800&ssl=1)',
+                                    }}
+                                ></div>
                             </Menu>
                         </Fragment>
                     ) : (

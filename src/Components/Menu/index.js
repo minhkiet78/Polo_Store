@@ -6,7 +6,7 @@ import Popper from './Popper';
 import useStore from '~/store';
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { checkLogin, showToast } from '~/store/action';
+import { showToast } from '~/store/action';
 
 const cx = classNames.bind(styles);
 function Menu({ children, listMenu }) {
@@ -14,9 +14,9 @@ function Menu({ children, listMenu }) {
 
     const handleMenu = (type) => {
         if (type === 'logout') {
-            dispatch(checkLogin(false));
             dispatch(showToast({ type: 'success', message: 'Đăng xuất thành công ' }));
-            localStorage.removeItem('user-login');
+            localStorage.removeItem('user_token');
+            window.location.href = '/';
         }
     };
     const renderItem = () => {

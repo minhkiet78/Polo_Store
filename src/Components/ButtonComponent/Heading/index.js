@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 function Heading() {
     return (
-        <div className={cx('sub')}>
+        <div className={cx('sub', 'container')}>
             <h1 className={cx('sub-heading1')}>Mã ưu đãi</h1>
             <div className={cx('sub-heading')}>
                 <h1>G10</h1>

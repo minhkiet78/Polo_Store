@@ -1,6 +1,6 @@
 .product {
     height: 400px;
-    margin: 20px 5px;
+    margin-bottom: 30px;
     position: relative;
     transition: 0.5s ease;
     border: solid 1px #ccc;
@@ -120,5 +120,16 @@
     background: orange;
     &::before {
         border-color: orange transparent orange transparent;
+    }
+}
+
+// reponsive
+
+@media (max-width: 1024px) {
+    .product {
+        height: 340px;
+        .product-image {
+            height: 68%;
+        }
     }
 }

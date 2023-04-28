@@ -5,19 +5,12 @@ import {
     REMOVE_CART,
     EDIT_CART,
     SET_MODAL_CART,
-    CHECK_LOGIN,
     SET_MODAL_lOGIN,
 } from './contains';
 
 const setModalCart = (payload) => {
     return {
         type: SET_MODAL_CART,
-        payload,
-    };
-};
-const checkLogin = (payload) => {
-    return {
-        type: CHECK_LOGIN,
         payload,
     };
 };
@@ -59,4 +52,4 @@ const showToast = (payload) => {
     };
 };
 
-export { checkLogin, activeProduct, addCard, showToast, removeCart, editCart, setModalCart, setModalLogin };
+export { activeProduct, addCard, showToast, removeCart, editCart, setModalCart, setModalLogin };

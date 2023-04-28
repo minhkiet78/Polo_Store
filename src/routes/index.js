@@ -13,7 +13,7 @@ const publicRoutes = [
     // { path: '/congdong', component: CongDong },
     // { path: '/chinhsach', component: ChinhSach },
     { path: '/thatsmybear', component: ThatsMyBear },
-    { path: '/product/detail/:slug', component: ProductDetail },
+    { path: '/product/:slug', component: ProductDetail },
     { path: '/admin', component: Admin },
 ];
 const privateRoutes = [];

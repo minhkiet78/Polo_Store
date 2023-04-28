@@ -121,8 +121,8 @@ function Home() {
                 </ButtonComponent>
                 <h1 className={cx('heading-category')}>DANH MỤC BẠN CẦN</h1>
             </div>
-            <div className={cx('container')}>
-                <Row className={cx('row-category')}>
+            <div className="container">
+                <Row>
                     {category.map((item, idx) => (
                         <Col xs="3" key={idx} className={cx('category')}>
                             <img className={cx('image')} src={item.img} />
@@ -135,8 +135,10 @@ function Home() {
                         </Col>
                     ))}
                 </Row>
-                <div className={cx('content')}>
-                    <Row className={cx('row_process')}>
+            </div>
+            <div className={cx('content')}>
+                <div className="container">
+                    <Row>
                         {procedure.map((item, idx) => (
                             <Col xs="4" key={idx} className={cx('procedure')}>
                                 <div className={cx('procedure-image')} style={{ backgroundImage: `url(${item.img})` }}>
@@ -147,12 +149,13 @@ function Home() {
                             </Col>
                         ))}
                     </Row>
-                    <Row className={cx('process')}>
+                    <Row>
                         <Col xs="8">
                             <video
                                 className={cx('video-process')}
                                 src={require('src/asetss/videos/video_process.mp4')}
                                 controls
+                                style={{ maxWidth: '100%' }}
                             />
                             <h1 className={cx('process-footer')}>QUY TRÌNH ĐÓNG GÓI 2 LỚP</h1>
                             <h2 className={cx('sub-footer')}>Bảo vệ sản phẩm bằng sự chân thành</h2>
@@ -164,108 +167,70 @@ function Home() {
                             <img
                                 className={cx('image-process')}
                                 src={require('src/asetss/image/procedure/quytrinh.png')}
+                                style={{ maxWidth: '100%' }}
                             />
                         </Col>
                     </Row>
                 </div>
+            </div>
 
-                <div className={cx('content-newproduct')}>
-                    <div className={cx('background-newproduct')}></div>
-                    <Row className={cx('list-product')}>
-                        {newProduct.map((item, idx) => (
-                            <Product key={idx} product={item} />
-                        ))}
-                    </Row>
-                </div>
-                <div className={cx('d-flex', 'justify-content-center')}>
-                    <ButtonComponent className={cx('btn-tronbo')} to={'/allproduct'}>
-                        XEM TRỌN BỘ{' '}
-                    </ButtonComponent>
-                </div>
-                {/* <div class="container-fluid">
-                    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="12000">
-                        <div class="carousel-inner row w-100 mx-auto flex-nowrap" role="listbox">
-                            <div class="carousel-item col-md-3 active">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400/000/fff?text=1" alt="slide 1"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=2" alt="slide 2"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=3" alt="slide 3"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=4" alt="slide 4"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=5" alt="slide 5"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=6" alt="slide 6"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=7" alt="slide 7"/>
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=8" alt="slide 7"/>
-                            </div>
+            <div className="container">
+                <Row className={cx('list-product')}>
+                    {newProduct.map((item, idx) => (
+                        <Product key={idx} product={item} />
+                    ))}
+                </Row>
+            </div>
+            <div className={cx('d-flex', 'justify-content-center')}>
+                <ButtonComponent className={cx('btn-tronbo')} to={'/allproduct'}>
+                    XEM TRỌN BỘ{' '}
+                </ButtonComponent>
+            </div>
+
+            <div className={cx('content', 'content-image')}>
+                <div className={cx('headingall')}>
+                    <div>
+                        <h2 className={cx('heading-image')}>Vì sao lại là HappyHow ?</h2>
+                        <div className={cx('heading-2')}>
+                            <h1>
+                                CHIẾC TÊN MỚI,
+                                <br />
+                                TẦM NHÌN MỚI
+                            </h1>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExample" role="ButtonComponent" data-slide="prev">
-                            <i class="fa fa-chevron-left fa-lg text-muted"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next text-faded" href="#carouselExample" role="ButtonComponent" data-slide="next">
-                            <i class="fa fa-chevron-right fa-lg text-muted"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
-                </div> */}
+                    <p className={cx('heading-3')}>
+                        Chúng mình muốn gửi đến bạn những cảm xúc tích cực và đầy
+                        <br />
+                        năng lượng trong từng điểm chạm, hãy trải nghiệm những khác
+                        <br />
+                        biệt đó ngay bây giờ.
+                    </p>
+                </div>
 
-                <div className={cx('content', 'content-image')}>
-                    <div className={cx('headingall')}>
-                        <div>
-                            <h2 className={cx('heading-image')}>Vì sao lại là HappyHow ?</h2>
-                            <div className={cx('heading-2')}>
-                                <h1>
-                                    CHIẾC TÊN MỚI,
-                                    <br />
-                                    TẦM NHÌN MỚI
-                                </h1>
+                <div className={cx('imasge-content')}>
+                    <img className={cx('image-1')} src={require('src/asetss/image/procedure/ab1.jpeg')} />
+                    <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
+                    <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
+                </div>
+            </div>
+            <div className="container">
+                <Row>
+                    {image_netword.map((item, idx) => (
+                        <Col xs="4" key={idx}>
+                            <div className={cx('netword-item')}>
+                                <ButtonComponent className={cx('image-link')} to={item.to}>
+                                    <img src={item.image} />
+                                </ButtonComponent>
+                                <h1 className={cx('title-netword')}>{item.title}</h1>
+                                <p className={cx('sub-title_netword')}>{item.sub_title}</p>
+                                <ButtonComponent className={cx('btn-netword')} to={item.to}>
+                                    Khám phá ngay
+                                </ButtonComponent>
                             </div>
-                        </div>
-                        <p className={cx('heading-3')}>
-                            Chúng mình muốn gửi đến bạn những cảm xúc tích cực và đầy
-                            <br />
-                            năng lượng trong từng điểm chạm, hãy trải nghiệm những khác
-                            <br />
-                            biệt đó ngay bây giờ.
-                        </p>
-                    </div>
-
-                    <div className={cx('imasge-content')}>
-                        <img className={cx('image-1')} src={require('src/asetss/image/procedure/ab1.jpeg')} />
-                        <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
-                        <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
-                    </div>
-                </div>
-                <div className={cx('wrapper-netword')}>
-                    <Row>
-                        {image_netword.map((item, idx) => (
-                            <Col xs="4" key={idx}>
-                                <div className={cx('netword-item')}>
-                                    <ButtonComponent className={cx('image-link')} to={item.to}>
-                                        <img src={item.image} />
-                                    </ButtonComponent>
-                                    <h1 className={cx('title-netword')}>{item.title}</h1>
-                                    <p className={cx('sub-title_netword')}>{item.sub_title}</p>
-                                    <ButtonComponent className={cx('btn-netword')} to={item.to}>
-                                        Khám phá ngay
-                                    </ButtonComponent>
-                                </div>
-                            </Col>
-                        ))}
-                    </Row>
-                </div>
+                        </Col>
+                    ))}
+                </Row>
             </div>
         </div>
     );

@@ -1,4 +1,6 @@
 const Account = require('../models/Account');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 class AuthController {
     // register
@@ -7,12 +9,14 @@ class AuthController {
             return res.status(400).json({ message: 'Mật khẩu không khớp' });
         }
         try {
-            Account.findOne({ user_name: req.body.user_name }, (err, existingAccount) => {
+            Account.findOne({ user_name: req.body.user_name }, async (err, existingAccount) => {
                 if (existingAccount) {
                     // Trường hợp user_name đã tồn tại trong cơ sở dữ liệu
                     return res.status(400).json({ message: 'Tài khoản đã tồn tại' });
                 }
-                Account.create({ user_name: req.body.user_name, password: req.body.password });
+                const salt = await bcrypt.genSalt(10);
+                const hashedPassword = await bcrypt.hash(req.body.password, salt);
+                Account.create({ user_name: req.body.user_name, password: hashedPassword });
                 res.status(200).json({
                     success: true,
                     message: 'Đăng ký thành công',
@@ -24,11 +28,16 @@ class AuthController {
     }
     login(req, res) {
         try {
-            Account.findOne({ user_name: req.body.user_name }, (err, existingAccount) => {
-                if (existingAccount) {
-                    if (req.body.password === existingAccount.password) {
+            Account.findOne({ user_name: req.body.user_name }, async (err, user) => {
+                if (user) {
+                    const validPassword = await bcrypt.compare(req.body.password, user.password);
+                    if (validPassword) {
+                        // create JWT
+                        const accessToken = jwt.sign({ userId: user._id }, 'your_secret_key');
+
                         return res.status(200).json({
                             success: true,
+                            accessToken,
                             message: 'Đăng nhập thành công',
                         });
                     }

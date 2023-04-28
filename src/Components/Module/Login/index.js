@@ -6,7 +6,7 @@ import Button from '~/Components/ButtonComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal, Row, Col, Form } from 'react-bootstrap';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
-import { showToast, setModalLogin, checkLogin } from '~/store/action';
+import { showToast, setModalLogin } from '~/store/action';
 
 import { register, login } from '~/api/apiAuth';
 const cx = classNames.bind(styles);
@@ -48,8 +48,8 @@ function Login() {
             const res = await login(payload);
             if (res.status == 200) {
                 dispatch(showToast({ type: 'success', message: res.data.message }));
-                dispatch(checkLogin(true));
-                dispatch(setModalLogin(false));
+                localStorage.setItem('user_token', res.data.accessToken);
+                window.location.reload();
             } else {
                 dispatch(showToast({ type: 'danger', message: res.data.message }));
             }
@@ -118,20 +118,19 @@ function Login() {
                                     >
                                         Xác nhận
                                     </Button>
-                                    <div className={cx('sale')}>
-                                        <FontAwesomeIcon icon={faDeleteLeft} />
-                                        <p className={cx('text')}>Giảm 10% đơn hàng đầu tiên (Nhập mã G10)</p>
-                                    </div>
-                                </div>
-
-                                <div className={cx('net-word')}>
-                                    {!is_register && <p style={{ fontSize: '16px' }}>---------- Hoặc -----------</p>}
-
-                                    <Button className={cx('btn-register')} onClick={handleChangeAuth}>
-                                        {is_register ? 'Đăng nhập' : 'Đăng ký'}
-                                    </Button>
                                 </div>
                             </Form>
+                            <div className={cx('sale')}>
+                                <FontAwesomeIcon icon={faDeleteLeft} />
+                                <p className={cx('text')}>Giảm 10% đơn hàng đầu tiên (Nhập mã G10)</p>
+                            </div>
+                            <div className={cx('net-word')}>
+                                {!is_register && <p style={{ fontSize: '16px' }}>---------- Hoặc -----------</p>}
+
+                                <Button className={cx('btn-register')} onClick={handleChangeAuth}>
+                                    {is_register ? 'Đăng nhập' : 'Đăng ký'}
+                                </Button>
+                            </div>
                         </Col>
                         <Col xs="6">
                             <img

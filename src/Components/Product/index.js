@@ -6,14 +6,13 @@ import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import helper from '../Support/helper';
 import useStore from '~/store';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Product({ product }) {
     const [state, dispatch] = useStore();
 
     const handleAddShop = () => {
-        if (localStorage.getItem('user-login')) {
+        if (localStorage.getItem('user_token')) {
             dispatch(activeProduct(product));
             dispatch(setModalCart(true));
         } else {
@@ -21,9 +20,9 @@ function Product({ product }) {
         }
     };
     return (
-        <Col xs="6" md="3">
+        <Col xs="6" md="4" xl="3">
             <div className={cx('product')}>
-                <a href={`/product/detail/${product.slug}`}>
+                <a href={`/product/${product.slug}`}>
                     <img className={cx('product-image')} src={`http://localhost:3000/uploads/${product.image}`}></img>
                 </a>
                 {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
@@ -36,7 +35,7 @@ function Product({ product }) {
                     />
                 </div>
 
-                <a href={`/product/detail/${product.slug}`}>
+                <a href={`/product/${product.slug}`}>
                     <div className={cx('product-name')}>{product.name}</div>
                     <div className={cx('group-price')}>
                         <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>

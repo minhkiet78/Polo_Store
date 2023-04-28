@@ -34,7 +34,7 @@ function ModalCart({ show, handleCloseShow }) {
             <Modal.Body>
                 <Row className={cx('data-product')}>
                     <Col xs="5">
-                        <img src={product.image} className={cx('image-product')} />
+                        <img src={`http://localhost:3000/uploads/${product.image}`} className={cx('image-product')} />
                     </Col>
                     <Col xs="7" className={cx('detail-product')}>
                         <p className={cx('name-product')}>{product.name}</p>
@@ -72,7 +72,7 @@ function ModalCart({ show, handleCloseShow }) {
                 <Button variant="secondary" onClick={handleCloseShow}>
                     Hủy
                 </Button>
-                <Button variant="primary" onClick={handleAccept}>
+                <Button variant="success" onClick={handleAccept}>
                     Xác nhận
                 </Button>
             </Modal.Footer>

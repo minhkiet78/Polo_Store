@@ -7,7 +7,7 @@ import { faCartPlus, faTape } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useStore from '~/store';
-import { addCard, showToast } from '~/store/action';
+import { addCard, showToast, setModalLogin } from '~/store/action';
 import helper from '~/Components/Support/helper';
 import Product from '~/Components/Product';
 import ModalSize from '~/Components/Support/ModalSize';
@@ -79,16 +79,20 @@ function ProductDetail() {
     };
 
     const handleAdd = () => {
-        let payload = {
-            ...productDetail,
-            size: size,
-            quantity: quantity,
-            total: quantity * productDetail.price,
-        };
-        dispatch(addCard(payload));
-        dispatch(showToast({ type: 'success', message: 'Thêm đơn hàng thành công !' }));
-        setQuantity(1);
-        setSize('m');
+        if (localStorage.getItem('user_token')) {
+            let payload = {
+                ...productDetail,
+                size: size,
+                quantity: quantity,
+                total: quantity * productDetail.price,
+            };
+            dispatch(addCard(payload));
+            dispatch(showToast({ type: 'success', message: 'Thêm đơn hàng thành công !' }));
+            setQuantity(1);
+            setSize('m');
+            return;
+        }
+        dispatch(setModalLogin(true));
     };
     return (
         <div className={cx('container', 'wrapper')}>

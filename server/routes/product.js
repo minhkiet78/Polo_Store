@@ -30,6 +30,12 @@ const ProductController = require('../controller/ProductController');
 // get all
 router.get('/', ProductController.getAll);
 
+// get new products
+router.get('/new', ProductController.getNewProducts);
+
+// get 4 new polo
+router.get('/new_polo', ProductController.getNewPolo);
+
 // create
 router.post('/create', upload.single('image'), ProductController.create);
 

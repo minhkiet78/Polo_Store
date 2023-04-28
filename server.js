@@ -2,18 +2,21 @@ const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // connect DB
 mongoose.set('strictQuery', false);
-console.log('databasre', process.env.PASSWORD);
 mongoose
-    .connect(`mongodb+srv://Project1:123@cluster0.33icpgj.mongodb.net/polo_store?retryWrites=true&w=majority`)
+    .connect(
+        `mongodb+srv://${process.env.PROJECT}:${process.env.PASSWORD}@cluster0.33icpgj.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`,
+    )
     .then(() => {
         console.log('Connect successfully !!!');
     })

@@ -23,9 +23,9 @@ function Product({ product }) {
     return (
         <Col xs="6" md="3">
             <div className={cx('product')}>
-                <Link to={`/product/detail/${product.id}`}>
+                <a href={`/product/detail/${product.slug}`}>
                     <img className={cx('product-image')} src={`http://localhost:3000/uploads/${product.image}`}></img>
-                </Link>
+                </a>
                 {product.popular && <span className={cx('ticker', 'ticker_popular')}>Phổ biến</span>}
                 {product.new && <span className={cx('ticker', 'ticker_new')}>Mới</span>}
                 <div className={cx('group-action')}>
@@ -36,13 +36,13 @@ function Product({ product }) {
                     />
                 </div>
 
-                <Link to={`/product/detail/${product.id}`}>
+                <a href={`/product/detail/${product.slug}`}>
                     <div className={cx('product-name')}>{product.name}</div>
                     <div className={cx('group-price')}>
                         <span className={cx('product-price')}>{helper.formatMoney(product.price)}</span>
                         {product.distanse && <span className={cx('sale')}>{helper.formatMoney(product.distanse)}</span>}
                     </div>
-                </Link>
+                </a>
             </div>
         </Col>
     );

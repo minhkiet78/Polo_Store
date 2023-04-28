@@ -41,9 +41,44 @@ class ProductController {
                     success: true,
                     data,
                 });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'NOT FOUND',
+                });
             }
         } catch (error) {
-            console.log(object);
+            res.status(400);
+        }
+    }
+
+    // get new Product
+    async getNewProducts(req, res) {
+        try {
+            const data = await Product.find({ category: 'new_product' });
+            if (data) {
+                res.status(200).json({
+                    success: true,
+                    data,
+                });
+            }
+        } catch (error) {
+            res.status(400);
+        }
+    }
+
+    // get new Polo
+    async getNewPolo(req, res) {
+        try {
+            const data = (await Product.find({ category: 'product' })).splice(0, 4);
+            if (data) {
+                res.status(200).json({
+                    success: true,
+                    data,
+                });
+            }
+        } catch (error) {
+            res.status(400);
         }
     }
 }

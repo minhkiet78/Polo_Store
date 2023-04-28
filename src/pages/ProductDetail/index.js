@@ -8,10 +8,11 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useStore from '~/store';
 import { addCard, showToast } from '~/store/action';
-import listProduct from '~/store/listproduct';
 import helper from '~/Components/Support/helper';
 import Product from '~/Components/Product';
 import ModalSize from '~/Components/Support/ModalSize';
+
+import { getDetailProduct, getAllProduct } from '~/api/managermentProduct';
 const cx = classNames.bind(styles);
 
 const arrStar = [1, 1, 1, 1, 1];
@@ -50,15 +51,32 @@ const listImage = [
 function ProductDetail() {
     const params = useParams();
     const [productDetail, setProductDetail] = useState(null);
+    const [listProduct, setListProduct] = useState([]);
     const [state, dispatch] = useStore();
+
     const [size, setSize] = useState('m');
     const [quantity, setQuantity] = useState(1);
     const [image, setImage] = useState(listImage[0]);
     const [show, setModalShow] = useState(false);
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
-        setProductDetail(listProduct.filter((item) => item.id == params.id)[0]);
+        getData();
+        getAllData();
     }, []);
+
+    const getData = async () => {
+        const res = await getDetailProduct(params.slug);
+        if (res.status == 200) {
+            setProductDetail(res.data.data);
+        }
+    };
+
+    const getAllData = async () => {
+        const res = await getAllProduct();
+        if (res.status == 200) {
+            setListProduct(res.data.data);
+        }
+    };
 
     const handleAdd = () => {
         let payload = {

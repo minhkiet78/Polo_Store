@@ -1,10 +1,13 @@
 import styles from './Newin.module.scss';
 import classNames from 'classnames/bind';
-import listProduct from '~/store/listproduct';
+
+import { useState } from 'react';
 import { Carousel, Row } from 'react-bootstrap';
 import { useEffect } from 'react';
 import Product from '~/Components/Product';
 import Heading from '~/Components/ButtonComponent/Heading';
+import { getNewProduct } from '~/api/managermentProduct';
+
 const carousels = [
     {
         image: require('src/asetss/image/Carousels/Newin/newin1.png'),
@@ -26,10 +29,18 @@ const carousels = [
 const cx = classNames.bind(styles);
 
 function NewIn() {
+    const [listProduct, setListProduct] = useState([]);
+
     useEffect(() => {
         document.getElementById('mainContent').scrollTo(0, 0);
+        getListNewProducts();
     }, []);
-
+    const getListNewProducts = async () => {
+        const res = await getNewProduct();
+        if (res.status == 200) {
+            setListProduct(res.data.data);
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <video className={cx('video')} src={require('src/asetss/videos/videonew_in.mp4')} controls autoPlay muted />
@@ -49,11 +60,9 @@ function NewIn() {
             </div>
             <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
             <Row className={cx('product-list')}>
-                {listProduct
-                    .filter((item) => item.category === 'product')
-                    .map((item, idx) => (
-                        <Product key={idx} product={item} />
-                    ))}
+                {listProduct.map((item, idx) => (
+                    <Product key={idx} product={item} />
+                ))}
             </Row>
             <div className={cx('content')}>
                 <div className={cx('background-image')}></div>

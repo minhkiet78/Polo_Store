@@ -74,7 +74,7 @@ function Footer() {
         <div className={cx('wrapper')}>
             <div className="container">
                 <Row>
-                    <Col xs="12" md="6">
+                    <Col xs="12" md="8">
                         <div className={cx('row')}>
                             <div className={cx('col-4')}>
                                 <div className={cx('logo')}>
@@ -107,7 +107,7 @@ function Footer() {
                             </div>
                         </div>
                     </Col>
-                    <Col xs="12" md="6">
+                    <Col xs="12" md="4">
                         <h2 className={cx('heading')}>KẾT NỐI VỚI CHÚNG TÔI </h2>
                         <div className={cx('list-icon')}>
                             <FontAwesomeIcon className={cx('icon')} icon={faFacebookF} />

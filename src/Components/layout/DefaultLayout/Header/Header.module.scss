@@ -11,15 +11,8 @@
     top: 0;
     left: 0;
     right: 0;
-    .inner {
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
     .logo {
         cursor: pointer;
-        width: 124px;
         height: auto;
     }
     .search {
@@ -66,6 +59,9 @@
         .icon-search {
             font-size: 20px;
         }
+    }
+    .nav-header {
+        display: block !important;
     }
     .action-header {
         display: flex;
@@ -151,4 +147,30 @@
 }
 .active {
     color: var(--primary) !important;
+}
+
+// reponsive
+
+@media (max-width: 767px) {
+    .wrapper {
+        .logo {
+            img {
+                width: 100px;
+            }
+        }
+        .search {
+            display: none;
+        }
+        .action-header {
+            display: none;
+        }
+        .nav-mobile {
+            background: #fff;
+        }
+    }
+    .nav-header {
+        .nav-item {
+            font-size: 14px;
+        }
+    }
 }

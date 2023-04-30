@@ -124,7 +124,7 @@ function Home() {
             <div className="container">
                 <Row>
                     {category.map((item, idx) => (
-                        <Col xs="3" key={idx} className={cx('category')}>
+                        <Col xs="6" lg="3" key={idx} className={cx('category')}>
                             <img className={cx('image')} src={item.img} />
                             <div className={cx('image_action')}>
                                 <span className={cx('title')}>{item.title}</span>
@@ -136,11 +136,11 @@ function Home() {
                     ))}
                 </Row>
             </div>
-            <div className={cx('content')}>
+            <div className={cx('content')} style={{ margin: '50px 0' }}>
                 <div className="container">
                     <Row>
                         {procedure.map((item, idx) => (
-                            <Col xs="4" key={idx} className={cx('procedure')}>
+                            <Col xs="12" md="4" key={idx} className={cx('procedure')}>
                                 <div className={cx('procedure-image')} style={{ backgroundImage: `url(${item.img})` }}>
                                     <div className={cx('box-icon')}>{item.iocn}</div>
                                 </div>
@@ -150,7 +150,7 @@ function Home() {
                         ))}
                     </Row>
                     <Row>
-                        <Col xs="8">
+                        <Col xs="12" md="8">
                             <video
                                 className={cx('video-process')}
                                 src={require('src/asetss/videos/video_process.mp4')}
@@ -163,7 +163,7 @@ function Home() {
                                 TRẢI NGHIỆM NGAY
                             </ButtonComponent>
                         </Col>
-                        <Col xs="4">
+                        <Col xs="4" className={cx('content-image-process')}>
                             <img
                                 className={cx('image-process')}
                                 src={require('src/asetss/image/procedure/quytrinh.png')}
@@ -187,34 +187,36 @@ function Home() {
                 </ButtonComponent>
             </div>
 
-            <div className={cx('content', 'content-image')}>
-                <div className={cx('headingall')}>
-                    <div>
-                        <h2 className={cx('heading-image')}>Vì sao lại là HappyHow ?</h2>
-                        <div className={cx('heading-2')}>
-                            <h1>
-                                CHIẾC TÊN MỚI,
-                                <br />
-                                TẦM NHÌN MỚI
-                            </h1>
+            <div className={cx('content', 'content-image', 'mb-5')}>
+                <div className="container">
+                    <div className={cx('headingall')}>
+                        <div>
+                            <h2 className={cx('heading-image')}>Vì sao lại là HappyHow ?</h2>
+                            <div className={cx('heading-2')}>
+                                <h1>
+                                    CHIẾC TÊN MỚI,
+                                    <br />
+                                    TẦM NHÌN MỚI
+                                </h1>
+                            </div>
                         </div>
+                        <p className={cx('heading-3')}>
+                            Chúng mình muốn gửi đến bạn những cảm xúc tích cực và đầy
+                            <br />
+                            năng lượng trong từng điểm chạm, hãy trải nghiệm những khác
+                            <br />
+                            biệt đó ngay bây giờ.
+                        </p>
                     </div>
-                    <p className={cx('heading-3')}>
-                        Chúng mình muốn gửi đến bạn những cảm xúc tích cực và đầy
-                        <br />
-                        năng lượng trong từng điểm chạm, hãy trải nghiệm những khác
-                        <br />
-                        biệt đó ngay bây giờ.
-                    </p>
-                </div>
 
-                <div className={cx('imasge-content')}>
-                    <img className={cx('image-1')} src={require('src/asetss/image/procedure/ab1.jpeg')} />
-                    <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
-                    <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
+                    <div className={cx('imasge-content')}>
+                        <img className={cx('image-1')} src={require('src/asetss/image/procedure/ab1.jpeg')} />
+                        <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
+                        <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
+                    </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="container mb-5">
                 <Row>
                     {image_netword.map((item, idx) => (
                         <Col xs="4" key={idx}>

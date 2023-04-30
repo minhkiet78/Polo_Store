@@ -11,19 +11,15 @@ import { getNewProduct } from '~/api/managermentProduct';
 const carousels = [
     {
         image: require('src/asetss/image/Carousels/Newin/newin1.png'),
-        title: 'Fist slide',
     },
     {
         image: require('src/asetss/image/Carousels/Newin/newin2.png'),
-        title: 'Second slide',
     },
     {
         image: require('src/asetss/image/slider_newin.jpeg'),
-        title: 'Second slide',
     },
     {
         image: require('src/asetss/image/Carousels/Newin/newin3.png'),
-        title: 'Last slide',
     },
 ];
 const cx = classNames.bind(styles);
@@ -46,7 +42,7 @@ function NewIn() {
             <video className={cx('video')} src={require('src/asetss/videos/videonew_in.mp4')} controls autoPlay muted />
             <Heading />
             <h1 className={cx('heading-slider')}>THAT'S MY BEAR</h1>
-            <div className={cx('content_slider')}>
+            <div className="container">
                 <Carousel className={cx('container_slider')}>
                     {carousels.map((item, idx) => (
                         <Carousel.Item key={idx} className={cx('slider-item')}>
@@ -58,23 +54,25 @@ function NewIn() {
                     ))}
                 </Carousel>
             </div>
-            <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
-            <Row className={cx('product-list')}>
-                {listProduct.map((item, idx) => (
-                    <Product key={idx} product={item} />
-                ))}
-            </Row>
-            <div className={cx('content')}>
-                <div className={cx('background-image')}></div>
-                <div className={cx('content-image')}>
-                    <img className={cx('new-image')} src={require('src/asetss/image/newin/newin1.png')} />
-                    <div className={cx('show-product')}>
-                        <div className={cx('text-product')}>
-                            <h1>ÁO THUN OVERSIZE</h1>
-                            <p>
-                                Với phom áo Oversize, bạn sẽ cảm thấy vô cùng thoải mái khi phối đồ cũng như dễ dàng thể
-                                hiện chất thời trang của riêng mình.
-                            </p>
+            <div className="container">
+                <h1 className={cx('collection')}>BỘ SƯU TẬP MỚI</h1>
+                <Row className={cx('product-list')}>
+                    {listProduct.map((item, idx) => (
+                        <Product key={idx} product={item} />
+                    ))}
+                </Row>
+                <div>
+                    <div className={cx('background-image')}></div>
+                    <div className={cx('content-image')}>
+                        <img className={cx('new-image')} src={require('src/asetss/image/newin/newin1.png')} />
+                        <div className={cx('show-product')}>
+                            <div className={cx('text-product')}>
+                                <h1>ÁO THUN OVERSIZE</h1>
+                                <p>
+                                    Với phom áo Oversize, bạn sẽ cảm thấy vô cùng thoải mái khi phối đồ cũng như dễ dàng
+                                    thể hiện chất thời trang của riêng mình.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -36,15 +36,13 @@
     }
 }
 .group-action {
-    display: flex;
-    align-items: center;
-    justify-content: end;
     padding: 0 20px;
     position: absolute;
     bottom: 120px;
-    left: 0;
     right: 0;
     color: #888;
+    display: none;
+    animation: example 0.3s ease;
     .action_icon {
         font-size: 25px;
         transition: 0.3s ease;
@@ -58,6 +56,9 @@
     .icon_shop:hover {
         color: var(--primary);
     }
+}
+.product:hover .group-action {
+    display: block;
 }
 .group-price {
     display: flex;
@@ -120,6 +121,15 @@
     background: orange;
     &::before {
         border-color: orange transparent orange transparent;
+    }
+}
+
+@keyframes example {
+    from {
+        right: -10px;
+    }
+    to {
+        right: 0;
     }
 }
 

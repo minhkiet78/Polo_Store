@@ -33,7 +33,7 @@ class AuthController {
                     const validPassword = await bcrypt.compare(req.body.password, user.password);
                     if (validPassword) {
                         // create JWT
-                        const accessToken = jwt.sign({ userId: user._id }, 'your_secret_key');
+                        const accessToken = jwt.sign({ userId: user._id }, process.env.SECRETKEY);
 
                         return res.status(200).json({
                             success: true,

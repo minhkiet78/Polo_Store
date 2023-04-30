@@ -31,3 +31,20 @@
     right: -50px;
     top: 0;
 }
+
+// reponsive
+@media (max-width: 767px) {
+    .sub {
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            font-size: 18px;
+        }
+        p {
+            width: fit-content;
+        }
+    }
+    .sub-heading1::after {
+        display: none;
+    }
+}

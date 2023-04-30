@@ -6,6 +6,11 @@
     --heigh-header: 120px;
     --text-corlor: #212121;
 }
+@media (max-width: 767px) {
+    :root {
+        --heigh-header: 60px;
+    }
+}
 
 * {
     padding: 0;

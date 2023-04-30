@@ -11,41 +11,30 @@
         margin: 40px 0 20px 0;
     }
 }
-.product-list {
-    margin-top: 10px;
-    padding: 0 100px;
-}
 
-.content {
-    height: 1000px;
+.background-image {
+    height: 80%;
     width: 100%;
-    position: relative;
-    .background-image {
-        height: 80%;
-        width: 100%;
-        background-image: url('https://happyhow.me/1428355432291766272/d/images/polo-premium-bg-2.jpg');
-        opacity: 0.2;
+    background-image: url('https://happyhow.me/1428355432291766272/d/images/polo-premium-bg-2.jpg');
+    opacity: 0.2;
+    object-fit: cover;
+}
+.content-image {
+    width: 100%;
+    display: flex;
+    margin: 50px 0;
+    .new-image {
+        width: 657px;
+        height: 900px;
         object-fit: cover;
     }
-    .content-image {
-        width: 100%;
-        display: flex;
-        padding: 0 76px;
-        position: absolute;
-        top: 50px;
-        .new-image {
-            width: 657px;
-            height: 900px;
-            object-fit: cover;
-        }
-        .show-product {
-            flex: 1;
-            height: 900px;
-            padding: 50px 20px;
-            background-color: #fff;
-            .text-product {
-                text-align: center;
-            }
+    .show-product {
+        flex: 1;
+        height: 900px;
+        padding: 50px 20px;
+        background-color: #fff;
+        .text-product {
+            text-align: center;
         }
     }
 }

@@ -42,17 +42,16 @@
     text-align: center;
     margin: 30px 0 10px 0;
 }
-.content_slider {
-    width: 100%;
-    padding: 0 100px;
-    .container_slider {
-        .slider-item {
-            padding: 0 10px;
-        }
-        .image-slider {
-            height: 600px;
-            width: 1030px;
-            object-fit: cover;
-        }
+
+.container_slider {
+    .slider-item {
+        padding: 0 10px;
+    }
+    .image-slider {
+        height: 600px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 }

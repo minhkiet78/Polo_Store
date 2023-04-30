@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-import { CREATE_PRODUCT, GET_ALL_PRODUCT, GET_NEW_POLO, GET_NEW_PRODUCTS, GET_DETAIL_PRODUCT } from './configApi';
+import {
+    CREATE_PRODUCT,
+    GET_ALL_PRODUCT,
+    GET_NEW_POLO,
+    GET_NEW_PRODUCTS,
+    GET_DETAIL_PRODUCT,
+    SEARCH_PRODUCTS,
+} from './configApi';
 
 const createProduct = async (payload) => {
     try {
@@ -40,4 +47,12 @@ const getNewPolo = async () => {
     }
 };
 
-export { createProduct, getAllProduct, getNewProduct, getNewPolo, getDetailProduct };
+const searchProduct = async (value) => {
+    try {
+        return await axios.get(SEARCH_PRODUCTS + `?search=${value}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { createProduct, getAllProduct, getNewProduct, getNewPolo, getDetailProduct, searchProduct };

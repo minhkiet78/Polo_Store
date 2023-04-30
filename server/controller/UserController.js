@@ -1,33 +1,29 @@
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
+const Account = require('../models/Account');
 
 class UserController {
-    getInfo(req, res) {
+    async getInfo(req, res) {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1];
         try {
             // Xác thực và giải mã access token sử dụng secret key
             const decoded = jwt.verify(token, process.env.SECRETKEY);
-
+            const userId = mongoose.Types.ObjectId(decoded.userId);
             // Trả về thông tin user
-            return res.status(200).json({
-                success: true,
-                data: decoded,
+            const user = await Account.findById(userId).select('-password');
+            if (user) {
+                return res.status(200).json({
+                    success: true,
+                    data: user,
+                });
+            }
+            return res.status(404).json({
+                message: 'NOT FOUND',
             });
         } catch (err) {
-            // Nếu xác thực không thành công, trả về lỗi hoặc null
-            console.log(err);
-            return null;
+            return res.status(400);
         }
-
-        // const user = getUserFromToken(req);
-
-        // if (!user) {
-        //     // Nếu không tìm thấy user, trả về lỗi hoặc thông báo không đăng nhập
-        //     res.status(401).json({ error: 'Unauthorized' });
-        // } else {
-        //     // Nếu tìm thấy user, thực hiện các thao tác tiếp theo
-        //     // ...
-        // }
     }
 }
 module.exports = new UserController();

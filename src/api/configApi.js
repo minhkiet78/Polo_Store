@@ -14,6 +14,7 @@ const GET_ALL_PRODUCT = `${API}/products`;
 const GET_DETAIL_PRODUCT = `${API}/products`;
 const GET_NEW_PRODUCTS = `${API}/products/new`;
 const GET_NEW_POLO = `${API}/products/new_polo`;
+const SEARCH_PRODUCTS = `${API}/products`;
 
 export {
     REGISTER,
@@ -24,4 +25,5 @@ export {
     GET_NEW_POLO,
     GET_DETAIL_PRODUCT,
     GET_USER,
+    SEARCH_PRODUCTS,
 };

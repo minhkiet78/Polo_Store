@@ -94,7 +94,6 @@ function Home() {
         document.getElementById('mainContent').scrollTo(0, 0);
         getListNewPolo();
     }, []);
-
     const getListNewPolo = async () => {
         const res = await getNewPolo();
         if (res.status === 200) {
@@ -149,7 +148,7 @@ function Home() {
                             </Col>
                         ))}
                     </Row>
-                    <Row>
+                    <Row className="mt-5">
                         <Col xs="12" md="8">
                             <video
                                 className={cx('video-process')}

@@ -45,8 +45,11 @@ function NewIn() {
             <div className="container">
                 <Carousel className={cx('container_slider')}>
                     {carousels.map((item, idx) => (
-                        <Carousel.Item key={idx} className={cx('slider-item')}>
-                            <img className={cx('d-block w-100', 'image-slider')} src={item.image} alt="First slide" />
+                        <Carousel.Item key={idx} className={cx('slider-item p-0')}>
+                            <div
+                                className={cx('d-block', 'image-slider')}
+                                style={{ backgroundImage: `url(${item.image})` }}
+                            ></div>
                             <Carousel.Caption>
                                 <h3>{item.title}</h3>
                             </Carousel.Caption>

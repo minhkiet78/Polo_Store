@@ -10,7 +10,6 @@ import {
     faCircleQuestion,
     faGear,
     faMagnifyingGlass,
-    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Button, Spinner } from 'react-bootstrap';
 import { DebounceInput } from 'react-debounce-input';
@@ -20,8 +19,8 @@ import Tippy from '@tippyjs/react';
 import ButtonComponent from '~/Components/ButtonComponent';
 import Menu from '~/Components/Menu';
 import MenuItem from '~/Components/MenuItem';
-import listProduct from '~/store/listproduct';
 import Popper from '~/Components/Menu/Popper';
+import { searchProduct } from '~/api/managermentProduct';
 
 const cx = classNames.bind(styles);
 const nav_items = [
@@ -90,15 +89,14 @@ function Header({ handleToggleCart }) {
         }
     }, []);
 
-    const handleSearch = (value) => {
+    const handleSearch = async (value) => {
         setSearch(value);
         setLoading(true);
         if (value.length) {
-            setResult(
-                listProduct
-                    .filter((item) => helper.formatSearch(item.name).includes(helper.formatSearch(value)))
-                    .slice(0, 6),
-            );
+            const res = await searchProduct(helper.formatSearch(value));
+            if (res.status === 200) {
+                setResult(res.data.data);
+            }
             setTimeout(() => {
                 setLoading(false);
             }, 400);

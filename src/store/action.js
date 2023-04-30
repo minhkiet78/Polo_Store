@@ -55,7 +55,7 @@ const showToast = (payload) => {
 
 const setDataUser = (payload) => {
     return {
-        type: SHOW_TOAST,
+        type: SET_DATA_USER,
         payload,
     };
 };

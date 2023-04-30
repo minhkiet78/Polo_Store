@@ -3,7 +3,18 @@ const Product = require('../models/Product');
 class ProductController {
     async getAll(req, res) {
         try {
-            const data = await Product.find({});
+            let data;
+            if (Object.keys(req.query).length === 0) {
+                data = await Product.find({});
+            } else if (req.query.search) {
+                const regex = new RegExp(req.query.search, 'i');
+                data = await Product.find({ name: regex }).slice(0, 10);
+            } else {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Bad request',
+                });
+            }
             res.status(200).json({
                 success: true,
                 data,

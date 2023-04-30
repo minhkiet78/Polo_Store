@@ -6,6 +6,7 @@ import {
     EDIT_CART,
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
+    SET_DATA_USER,
 } from './contains';
 
 const initState = {
@@ -16,6 +17,7 @@ const initState = {
     toast: null,
     listCard: [],
     totalQuantity: 0,
+    dataUser: null,
 };
 function reducer(state, action) {
     switch (action.type) {
@@ -88,6 +90,11 @@ function reducer(state, action) {
                     toast: null,
                 };
             }
+        case SET_DATA_USER:
+            return {
+                ...state,
+                dataUser: action.payload,
+            };
         default:
             throw new Error('Ivalid action');
     }

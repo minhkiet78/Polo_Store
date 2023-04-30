@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 function MenuItem({ menu, onClick }) {
     return (
         <div className={cx('menu-item')} onClick={onClick}>
-            <img src={menu.image}></img>
+            <img src={`http://localhost:3000/uploads/${menu.image}`}></img>
             <p>{menu.name}</p>
         </div>
     );

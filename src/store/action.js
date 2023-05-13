@@ -1,6 +1,5 @@
 import {
     ACTIVE_PRODUCT,
-    ADD_CART,
     SHOW_TOAST,
     REMOVE_CART,
     EDIT_CART,
@@ -28,12 +27,6 @@ const activeProduct = (payload) => {
     };
 };
 
-const addCard = (payload) => {
-    return {
-        type: ADD_CART,
-        payload,
-    };
-};
 const removeCart = (payload) => {
     return {
         type: REMOVE_CART,
@@ -60,4 +53,4 @@ const setDataUser = (payload) => {
     };
 };
 
-export { activeProduct, addCard, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser };
+export { activeProduct, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser };

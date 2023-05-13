@@ -1,6 +1,5 @@
 import {
     ACTIVE_PRODUCT,
-    ADD_CART,
     SHOW_TOAST,
     REMOVE_CART,
     EDIT_CART,
@@ -36,32 +35,6 @@ function reducer(state, action) {
                 ...state,
                 modalLogin: action.payload,
             };
-        case ADD_CART:
-            let check = true;
-            for (let i = 0; i < state.listCard.length; i++) {
-                if (state.listCard[i].id === action.payload.id && state.listCard[i].size === action.payload.size) {
-                    check = false;
-                    if (state.isEdit) {
-                        state.listCard[i] = action.payload;
-                    } else {
-                        state.listCard[i].quantity += Number(action.payload.quantity);
-                        state.listCard[i].total += action.payload.total;
-                    }
-                    break;
-                }
-            }
-            if (check) {
-                return {
-                    ...state,
-                    listCard: [...state.listCard, action.payload],
-                };
-            } else {
-                const newQuantity = state.listCard.reduce((total, curr) => total + curr.quantity, 0);
-                return {
-                    ...state,
-                    totalQuantity: newQuantity,
-                };
-            }
         case EDIT_CART:
             return {
                 ...state,

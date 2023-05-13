@@ -4,7 +4,9 @@ import classNames from 'classnames/bind';
 import styles from './ModalCart.module.scss';
 import useStore from '~/store';
 import helper from '../helper';
-import { addCard, showToast } from '~/store/action';
+import { showToast } from '~/store/action';
+
+import { createCart } from '~/api/managermentCart';
 
 const cx = classNames.bind(styles);
 function ModalCart({ show, handleCloseShow }) {
@@ -18,16 +20,20 @@ function ModalCart({ show, handleCloseShow }) {
     useEffect(() => {
         setTotal(number * product.price);
     }, [number]);
-    const handleAccept = () => {
+    const handleAccept = async () => {
         const payload = {
-            ...product,
+            product_id: product._id,
             quantity: number,
-            total,
             size: size,
+            total_price: total,
         };
-        dispatch(addCard(payload));
-        dispatch(showToast({ type: 'success', message: `${state.isEdit ? 'Cập nhật' : 'Thêm'} đơn hàng thành công!` }));
-        handleCloseShow();
+        const res = await createCart(payload);
+        if (res.status == 200) {
+            dispatch(showToast({ type: 'success', message: res.data.message }));
+            handleCloseShow();
+        } else {
+            dispatch(showToast({ type: 'danger', message: res.data.message }));
+        }
     };
     return (
         <Modal centered show={show} size="lg" onHide={handleCloseShow}>

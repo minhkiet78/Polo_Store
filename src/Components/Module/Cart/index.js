@@ -14,14 +14,20 @@ import {
     faTruckFast,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { getListCartUser } from '~/api/managermentCart';
+
 const cx = classNames.bind(styles);
 function Cart({ handleToggleCart }) {
     const [state, dispatch] = useStore();
+    const [listCart, setListCart] = useState([]);
     const [payment, setPayment] = useState(0);
 
-    useEffect(() => {
-        setPayment(state.listCard.reduce((total, curr) => total + curr.total, 0));
-    }, [state.listCard, state.totalQuantity]);
+    useEffect(async () => {
+        const res = await getListCartUser();
+        if (res.status == 200) {
+            setListCart(res.data.data);
+        }
+    }, []);
 
     const handleEditcart = (product) => {
         dispatch(activeProduct(product));
@@ -36,7 +42,7 @@ function Cart({ handleToggleCart }) {
         <div className={cx('wrapper')}>
             <div className={cx('heading')}>
                 <h3>GIỎ HÀNG CỦA BẠN</h3>
-                <p>({state.listCard.length} sản phẩm)</p>
+                <p>({listCart.length} sản phẩm)</p>
                 <FontAwesomeIcon className={cx('icon-close')} icon={faClose} onClick={handleToggleCart} />
             </div>
             <div className={cx('sub-heading')}>
@@ -44,14 +50,14 @@ function Cart({ handleToggleCart }) {
                 <p>Miễn Phí giao hàng cho đơn hàng trên 500.000đ</p>
             </div>
             <div className={cx('content-cart')}>
-                {state.listCard.length === 0 ? (
+                {listCart.length === 0 ? (
                     <div className={cx('cart-rong')}>
                         <FontAwesomeIcon className={cx('icon-cart')} icon={faCartArrowDown} />
                         <p>Giỏ hàng của bạn đang trống</p>
                     </div>
                 ) : (
                     <Fragment>
-                        {state.listCard.map((product, idx) => (
+                        {listCart.map((product, idx) => (
                             <div className={cx('product-item')} key={idx}>
                                 <img src={product.image} className={cx('image-product')} />
                                 <div className={cx('content-product')}>
@@ -66,7 +72,7 @@ function Cart({ handleToggleCart }) {
                                     </div>
                                     <div className={cx('content-action')}>
                                         <p>
-                                            Tổng cộng: <span>{helper.formatMoney(product.total)}</span>
+                                            Tổng cộng: <span>{helper.formatMoney(product.total_price)}</span>
                                         </p>
                                         <div className={cx('group-action')}>
                                             <FontAwesomeIcon

@@ -22,11 +22,9 @@ function Cart({ handleToggleCart }) {
     const [listCart, setListCart] = useState([]);
     const [payment, setPayment] = useState(0);
 
-    useEffect(async () => {
-        const res = await getListCartUser();
-        if (res.status == 200) {
-            setListCart(res.data.data);
-        }
+    useEffect(() => {
+        setListCart(state.listCarts);
+        setPayment(state.listCarts.reduce((total, curr) => (total += curr.total_price), 0));
     }, []);
 
     const handleEditcart = (product) => {
@@ -59,7 +57,10 @@ function Cart({ handleToggleCart }) {
                     <Fragment>
                         {listCart.map((product, idx) => (
                             <div className={cx('product-item')} key={idx}>
-                                <img src={product.image} className={cx('image-product')} />
+                                <img
+                                    src={`http://localhost:3000/uploads/${product.product_id.image}`}
+                                    className={cx('image-product')}
+                                />
                                 <div className={cx('content-product')}>
                                     <p>{product.name}</p>
                                     <div className={cx('d-flex')} style={{ gap: '20px' }}>

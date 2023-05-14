@@ -166,7 +166,7 @@ function Header({ handleToggleCart }) {
                             {isLogin ? (
                                 <Fragment>
                                     <span className={cx('cart')}>
-                                        <span>{state.listCard.length}</span>
+                                        <span>{state.listCarts.length}</span>
                                         <FontAwesomeIcon
                                             className={cx('icon')}
                                             icon={faCartShopping}

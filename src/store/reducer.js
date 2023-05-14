@@ -6,6 +6,7 @@ import {
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
     SET_DATA_USER,
+    SET_DATA_CART,
 } from './contains';
 
 const initState = {
@@ -14,7 +15,7 @@ const initState = {
     modalCart: false,
     modalLogin: false,
     toast: null,
-    listCard: [],
+    listCarts: [],
     totalQuantity: 0,
     dataUser: null,
 };
@@ -35,18 +36,23 @@ function reducer(state, action) {
                 ...state,
                 modalLogin: action.payload,
             };
+        case SET_DATA_CART:
+            return {
+                ...state,
+                listCarts: action.payload || [],
+            };
         case EDIT_CART:
             return {
                 ...state,
                 isEdit: action.payload,
             };
         case REMOVE_CART:
-            const newData = state.listCard.filter(
+            const newData = state.listCarts.filter(
                 (item) => item.id !== action.payload.id || item.size !== action.payload.size,
             );
             return {
                 ...state,
-                listCard: newData,
+                listCarts: newData,
             };
         case SHOW_TOAST:
             if (action.payload) {

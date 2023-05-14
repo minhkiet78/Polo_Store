@@ -6,6 +6,7 @@ import {
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
     SET_DATA_USER,
+    SET_DATA_CART,
 } from './contains';
 
 const setModalCart = (payload) => {
@@ -53,4 +54,11 @@ const setDataUser = (payload) => {
     };
 };
 
-export { activeProduct, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser };
+const setDatacart = (payload) => {
+    return {
+        type: SET_DATA_CART,
+        payload,
+    };
+};
+
+export { activeProduct, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser, setDatacart };

@@ -6,7 +6,7 @@ import {
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
     SET_DATA_USER,
-    SET_DATA_CART,
+    GET_DATA_CART,
 } from './contains';
 
 const initState = {
@@ -36,10 +36,10 @@ function reducer(state, action) {
                 ...state,
                 modalLogin: action.payload,
             };
-        case SET_DATA_CART:
+        case GET_DATA_CART:
             return {
                 ...state,
-                listCarts: action.payload || [],
+                listCarts: action.payload.data.data || [],
             };
         case EDIT_CART:
             return {
@@ -47,9 +47,7 @@ function reducer(state, action) {
                 isEdit: action.payload,
             };
         case REMOVE_CART:
-            const newData = state.listCarts.filter(
-                (item) => item.id !== action.payload.id || item.size !== action.payload.size,
-            );
+            const newData = state.listCarts.filter((item) => item.item_id !== action.idCart);
             return {
                 ...state,
                 listCarts: newData,

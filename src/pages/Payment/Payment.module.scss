@@ -1,0 +1,119 @@
+.header-payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #888;
+    height: 55px;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    .select-product {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 100px;
+        input {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            cursor: pointer;
+        }
+    }
+    .header-sub-heading {
+        display: flex;
+        align-items: center;
+        width: 60%;
+        justify-content: space-between;
+        span {
+            width: 20%;
+            text-align: center;
+        }
+    }
+}
+.footer-payment {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    height: 76px;
+    box-shadow: 0px 4px 8px #888888;
+    z-index: 1;
+    .content-payment {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.cart-item_container {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px #fcfcfc;
+    border-left: unset;
+    border-right: unset;
+    padding: 10px 0;
+    align-items: center;
+    user-select: none;
+    .cart-item_info {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        input {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            cursor: pointer;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        .cart-item_name {
+            h3 {
+                font-size: 18px;
+            }
+            .text-free {
+                font-size: 12px;
+            }
+        }
+    }
+    .content-detail {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        .item {
+            width: 20%;
+            text-align: center;
+        }
+        .price {
+            color: var(--primary);
+        }
+        .quantity {
+            width: fit-content;
+            display: flex;
+            border: solid 1px #fcfcfc;
+            padding: 4px;
+            border-radius: 4px;
+            input {
+                width: 50px;
+                text-align: center;
+            }
+            span {
+                width: 20px;
+                cursor: pointer;
+                padding: 2px;
+                &:hover {
+                    background: #fcfcfc;
+                }
+            }
+        }
+    }
+}

@@ -6,8 +6,10 @@ import {
     SET_MODAL_CART,
     SET_MODAL_lOGIN,
     SET_DATA_USER,
-    SET_DATA_CART,
+    GET_DATA_CART,
 } from './contains';
+
+import { getListCartUser } from '~/api/managermentCart';
 
 const setModalCart = (payload) => {
     return {
@@ -28,10 +30,10 @@ const activeProduct = (payload) => {
     };
 };
 
-const removeCart = (payload) => {
+const removeCart = (idCart) => {
     return {
         type: REMOVE_CART,
-        payload,
+        idCart,
     };
 };
 const editCart = (payload) => {
@@ -54,11 +56,13 @@ const setDataUser = (payload) => {
     };
 };
 
-const setDatacart = (payload) => {
+const getDatacart = () => {
     return {
-        type: SET_DATA_CART,
-        payload,
+        type: GET_DATA_CART,
+        payload: new Promise((resolve) => {
+            resolve(getListCartUser());
+        }),
     };
 };
 
-export { activeProduct, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser, setDatacart };
+export { activeProduct, showToast, removeCart, editCart, setModalCart, setModalLogin, setDataUser, getDatacart };

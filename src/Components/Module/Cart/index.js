@@ -3,7 +3,7 @@ import styles from './Cart.module.scss';
 import classNames from 'classnames/bind';
 import useStore from '~/store';
 import helper from '~/Components/Support/helper';
-import { removeCart, showToast, activeProduct, setModalCart, editCart } from '~/store/action';
+import { removeCart, showToast, activeProduct, setModalCart, editCart, getDatacart } from '~/store/action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRight,
@@ -13,28 +13,36 @@ import {
     faTrash,
     faTruckFast,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { getListCartUser } from '~/api/managermentCart';
+import { deleteCart } from '~/api/managermentCart';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function Cart({ handleToggleCart }) {
     const [state, dispatch] = useStore();
     const [listCart, setListCart] = useState([]);
-    const [payment, setPayment] = useState(0);
 
     useEffect(() => {
         setListCart(state.listCarts);
-        setPayment(state.listCarts.reduce((total, curr) => (total += curr.total_price), 0));
-    }, []);
+    }, [state.listCarts]);
 
     const handleEditcart = (product) => {
-        dispatch(activeProduct(product));
+        let newProduct = product.product_id;
+        newProduct = { ...newProduct, quantity: product.quantity, size: product.size, cart_id: product.item_id };
+
+        dispatch(activeProduct(newProduct));
         dispatch(editCart(true));
         dispatch(setModalCart(true));
     };
-    const handleRomoveCart = (product) => {
-        dispatch(removeCart(product));
-        dispatch(showToast({ type: 'success', message: 'Xóa đơn hàng thành công !' }));
+
+    const handleRomoveCart = async (id) => {
+        const res = await deleteCart(id);
+        if (res.status === 200) {
+            dispatch(showToast({ type: 'success', message: res.data.message }));
+            dispatch(removeCart(id));
+            dispatch(getDatacart());
+        } else {
+            dispatch(showToast({ type: 'danger', message: 'Xóa thất bại' }));
+        }
     };
     return (
         <div className={cx('wrapper')}>
@@ -84,7 +92,7 @@ function Cart({ handleToggleCart }) {
                                             <FontAwesomeIcon
                                                 className={cx('icon', 'icon-delete')}
                                                 icon={faTrash}
-                                                onClick={() => handleRomoveCart(product)}
+                                                onClick={() => handleRomoveCart(product.item_id)}
                                             />
                                         </div>
                                     </div>
@@ -95,14 +103,12 @@ function Cart({ handleToggleCart }) {
                 )}
             </div>
             <div className={cx('pay')}>
-                <div className={cx('sum-pay')}>
-                    <h3>Tổng thanh toán:</h3>
-                    <span>{helper.formatMoney(payment)}</span>
-                </div>
-                <button className={cx('btn-pay')}>
-                    Thanh toán
-                    <FontAwesomeIcon className={cx('arow')} icon={faArrowRight} />
-                </button>
+                <Link to="/orders/payment" onClick={handleToggleCart}>
+                    <button className={cx('btn-pay')}>
+                        Đi đến thanh toán
+                        <FontAwesomeIcon className={cx('arow')} icon={faArrowRight} />
+                    </button>
+                </Link>
             </div>
         </div>
     );

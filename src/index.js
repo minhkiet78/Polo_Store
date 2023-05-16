@@ -6,7 +6,6 @@ import GlobalStyles from '~/Components/GlobalStyles';
 import Provider from './store/Provider';
 import 'boxicons';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider>

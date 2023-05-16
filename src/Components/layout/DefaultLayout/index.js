@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Toast } from 'react-bootstrap';
-import { showToast, setModalCart, editCart, setDatacart } from '~/store/action';
+import { showToast, setModalCart, editCart, getDatacart } from '~/store/action';
 import useStore from '~/store';
 import Header from './Header';
 import Footer from './Footer';
@@ -10,24 +10,16 @@ import ModalCart from '~/Components/Support/ModalCart';
 import Login from '~/Components/Module/Login';
 import Cart from '~/Components/Module/Cart';
 
-import { getListCartUser } from '~/api/managermentCart';
-
 const cx = classNames.bind(styles);
 function DefaultLayoute({ children }) {
     const [showCart, setShowCart] = useState(false);
     const [state, dispatch] = useStore();
     useEffect(() => {
         if (localStorage.getItem('user_token')) {
-            getDatCart();
+            dispatch(getDatacart());
         }
     }, []);
 
-    const getDatCart = async () => {
-        const res = await getListCartUser();
-        if (res.status == 200) {
-            dispatch(setDatacart(res.data.data));
-        }
-    };
     const handleCloseModal = () => {
         dispatch(setModalCart(false));
         if (state.isEdit) {

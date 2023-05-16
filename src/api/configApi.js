@@ -17,8 +17,10 @@ const GET_NEW_POLO = `${API}/products/new_polo`;
 const SEARCH_PRODUCTS = `${API}/products`;
 
 // oder
-const CREATE_CART = `${API}/cart/create`;
 const GET_ALL_LIST_CARTS = `${API}/cart/get_all`;
+const CREATE_CART = `${API}/cart/create`;
+const DELETE_CART = `${API}/cart/delete_cart`;
+const UPDATE_CART = `${API}/cart/update_cart`;
 
 export {
     REGISTER,
@@ -32,4 +34,6 @@ export {
     SEARCH_PRODUCTS,
     CREATE_CART,
     GET_ALL_LIST_CARTS,
+    DELETE_CART,
+    UPDATE_CART,
 };

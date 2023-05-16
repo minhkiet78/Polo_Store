@@ -16,7 +16,7 @@ function Menu({ children, listMenu }) {
         if (type === 'logout') {
             dispatch(showToast({ type: 'success', message: 'Đăng xuất thành công ' }));
             localStorage.removeItem('user_token');
-            window.location.href = '/';
+            window.location.reload();
         }
     };
     const renderItem = () => {

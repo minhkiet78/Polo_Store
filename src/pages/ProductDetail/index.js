@@ -7,12 +7,13 @@ import { faCartPlus, faTape } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useStore from '~/store';
-import { showToast, setModalLogin } from '~/store/action';
+import { showToast, setModalLogin, getDatacart } from '~/store/action';
 import helper from '~/Components/Support/helper';
 import Product from '~/Components/Product';
 import ModalSize from '~/Components/Support/ModalSize';
 
 import { getDetailProduct, getAllProduct } from '~/api/managermentProduct';
+import { createCart } from '~/api/managermentCart';
 const cx = classNames.bind(styles);
 
 const arrStar = [1, 1, 1, 1, 1];
@@ -78,16 +79,19 @@ function ProductDetail() {
         }
     };
 
-    const handleAdd = () => {
+    const handleAdd = async () => {
         if (localStorage.getItem('user_token')) {
             let payload = {
-                ...productDetail,
+                product_id: productDetail._id,
                 size: size,
-                quantity: quantity,
-                total: quantity * productDetail.price,
+                quantity,
+                total_price: quantity * productDetail.price,
             };
-            // dispatch(addCard(payload));
-            dispatch(showToast({ type: 'success', message: 'Thêm đơn hàng thành công !' }));
+            const res = await createCart(payload);
+            if (res.status === 200) {
+                dispatch(getDatacart());
+                dispatch(showToast({ type: 'success', message: res.data.message }));
+            }
             setQuantity(1);
             setSize('m');
             return;
@@ -171,7 +175,7 @@ function ProductDetail() {
                 </Row>
             )}
             <div className={cx('list-new_product')}>
-                <h3>Bạn có thể thích:</h3>
+                <h4 className="mb-3">Bạn có thể thích:</h4>
                 <Row>
                     {listProduct
                         .filter((item) => item.category === 'new_product')

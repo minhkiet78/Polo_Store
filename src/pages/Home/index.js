@@ -13,41 +13,41 @@ const cx = classNames.bind(styles);
 
 const category = [
     {
-        img: require('src/asetss/image/danhmuc/polo.png'),
+        img: require('src/assets/image/danhmuc/polo.png'),
         title: 'ÁO POLO',
         to: '/allproduct#polo-product',
     },
     {
-        img: require('src/asetss/image/danhmuc/aothun.jpeg'),
+        img: require('src/assets/image/danhmuc/aothun.jpeg'),
         title: 'ÁO THUN',
         to: '/allproduct#boxer-product',
     },
     {
-        img: require('src/asetss/image/danhmuc/quanboxer.jpeg'),
+        img: require('src/assets/image/danhmuc/quanboxer.jpeg'),
         title: 'QUẦN BOXER',
         to: '/quanboxer',
     },
     {
-        img: require('src/asetss/image/danhmuc/banchaynhat.jpeg'),
+        img: require('src/assets/image/danhmuc/banchaynhat.jpeg'),
         title: 'BÁN CHẠY NHẤT',
         to: '/banchaynhat',
     },
 ];
 const procedure = [
     {
-        img: require('src/asetss/image/procedure/b1.jpeg'),
+        img: require('src/assets/image/procedure/b1.jpeg'),
         title: 'Yên tâm tặng quà',
         sub_title: 'Sản phẩm được đóng gói sang trọng, 99% đúng ý nam giới',
         iocn: <FontAwesomeIcon className={cx('icon')} icon={faGift} />,
     },
     {
-        img: require('src/asetss/image/procedure/b2.jpeg'),
+        img: require('src/assets/image/procedure/b2.jpeg'),
         title: 'Yên tâm đổi trả',
         sub_title: 'Miễn phí đổi trả trong 30 ngày nếu bạn không hài lòng',
         iocn: <FontAwesomeIcon className={cx('icon')} icon={faRotate} />,
     },
     {
-        img: require('src/asetss/image/procedure/b3.jpeg'),
+        img: require('src/assets/image/procedure/b3.jpeg'),
         title: 'Yên tâm nhận liền',
         sub_title: 'Dịch vụ giao nhanh dành riêng cho những trường hợp "cấp bách"',
         iocn: <FontAwesomeIcon className={cx('icon')} icon={faTruckFast} />,
@@ -55,19 +55,19 @@ const procedure = [
 ];
 const image_netword = [
     {
-        image: require('src/asetss/image/netword/netword1.jpeg'),
+        image: require('src/assets/image/netword/netword1.jpeg'),
         title: 'HAPPY-GRAM',
         sub_title: 'Instagram duy nhất và chính thức của chúng tôi',
         to: '/instagram',
     },
     {
-        image: require('src/asetss/image/netword/netword2.jpeg'),
+        image: require('src/assets/image/netword/netword2.jpeg'),
         title: 'NGHIỆN POLO',
         sub_title: 'Cộng đồng đam mê áo Polo đầy sôi nổi',
         to: '/faceboook',
     },
     {
-        image: require('src/asetss/image/netword/netword3.jpeg'),
+        image: require('src/assets/image/netword/netword3.jpeg'),
         title: 'HAPPYHOW X TIKTOK',
         sub_title: 'Những chiếc video đầy thú vị về Ông Chú Polo',
         to: '/tiktok',
@@ -75,15 +75,15 @@ const image_netword = [
 ];
 const carousels = [
     {
-        image: require('src/asetss/image/Carousels/home/slider_home.jpeg'),
+        image: require('src/assets/image/Carousels/home/slider_home.jpeg'),
         title: 'Fist slide',
     },
     {
-        image: require('src/asetss/image/Carousels/home/slider_home2.jpeg'),
+        image: require('src/assets/image/Carousels/home/slider_home2.jpeg'),
         title: 'Second slide',
     },
     {
-        image: require('src/asetss/image/Carousels/home/slider_home3.jpeg'),
+        image: require('src/assets/image/Carousels/home/slider_home3.jpeg'),
         title: 'Last slide',
     },
 ];
@@ -152,7 +152,7 @@ function Home() {
                         <Col xs="12" md="8">
                             <video
                                 className={cx('video-process')}
-                                src={require('src/asetss/videos/video_process.mp4')}
+                                src={require('src/assets/videos/video_process.mp4')}
                                 controls
                                 style={{ maxWidth: '100%' }}
                             />
@@ -165,7 +165,7 @@ function Home() {
                         <Col xs="4" className={cx('content-image-process')}>
                             <img
                                 className={cx('image-process')}
-                                src={require('src/asetss/image/procedure/quytrinh.png')}
+                                src={require('src/assets/image/procedure/quytrinh.png')}
                                 style={{ maxWidth: '100%' }}
                             />
                         </Col>
@@ -209,9 +209,9 @@ function Home() {
                     </div>
 
                     <div className={cx('imasge-content')}>
-                        <img className={cx('image-1')} src={require('src/asetss/image/procedure/ab1.jpeg')} />
-                        <img className={cx('image-2')} src={require('src/asetss/image/procedure/ab2.jpeg')} />
-                        <img className={cx('image-3')} src={require('src/asetss/image/procedure/ab3.jpeg')} />
+                        <img className={cx('image-1')} src={require('src/assets/image/procedure/ab1.jpeg')} />
+                        <img className={cx('image-2')} src={require('src/assets/image/procedure/ab2.jpeg')} />
+                        <img className={cx('image-3')} src={require('src/assets/image/procedure/ab3.jpeg')} />
                     </div>
                 </div>
             </div>

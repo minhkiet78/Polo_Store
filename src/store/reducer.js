@@ -18,6 +18,20 @@ const initState = {
     listCarts: [],
     totalQuantity: 0,
     dataUser: null,
+    listOptionPayments: [
+        {
+            title: 'Master card',
+            image: '~/assets/image/payment/master_card.png',
+        },
+        {
+            title: 'Visa',
+            image: '~/assets/image/payment/visa.png',
+        },
+        {
+            title: 'Shoppe pay',
+            image: '~/assets/image/payment/shoppe_pay.png',
+        },
+    ],
 };
 function reducer(state, action) {
     switch (action.type) {

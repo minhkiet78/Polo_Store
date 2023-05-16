@@ -29,7 +29,7 @@ function Allproduct() {
 
     return (
         <div className={cx('wrapper')}>
-            <Slider children={require('src/asetss/image/slider.jpeg')} />
+            <Slider children={require('src/assets/image/slider.jpeg')} />
             <Heading />
 
             <div className="container">
@@ -46,7 +46,7 @@ function Allproduct() {
                         </div>
                     </Col>
                     <Col xs="6">
-                        <img className={cx('anh1')} src={require('src/asetss/image/anh1.jpeg')} />
+                        <img className={cx('anh1')} src={require('src/assets/image/anh1.jpeg')} />
                     </Col>
                 </Row>
             </div>
@@ -60,7 +60,7 @@ function Allproduct() {
                         ))}
                 </Row>
             </section>
-            <Slider children={require('src/asetss/image/slider2.jpeg')} />
+            <Slider children={require('src/assets/image/slider2.jpeg')} />
             <section id="polo-product" className="container">
                 <h2 className={cx('new-product')}>ORIGINAL POLO</h2>
                 <Row className={cx('product-list')}>

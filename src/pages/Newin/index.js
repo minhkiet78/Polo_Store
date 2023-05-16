@@ -10,16 +10,16 @@ import { getNewProduct } from '~/api/managermentProduct';
 
 const carousels = [
     {
-        image: require('src/asetss/image/Carousels/Newin/newin1.png'),
+        image: require('src/assets/image/Carousels/Newin/newin1.png'),
     },
     {
-        image: require('src/asetss/image/Carousels/Newin/newin2.png'),
+        image: require('src/assets/image/Carousels/Newin/newin2.png'),
     },
     {
-        image: require('src/asetss/image/slider_newin.jpeg'),
+        image: require('src/assets/image/slider_newin.jpeg'),
     },
     {
-        image: require('src/asetss/image/Carousels/Newin/newin3.png'),
+        image: require('src/assets/image/Carousels/Newin/newin3.png'),
     },
 ];
 const cx = classNames.bind(styles);
@@ -39,7 +39,7 @@ function NewIn() {
     };
     return (
         <div className={cx('wrapper')}>
-            <video className={cx('video')} src={require('src/asetss/videos/videonew_in.mp4')} controls autoPlay muted />
+            <video className={cx('video')} src={require('src/assets/videos/videonew_in.mp4')} controls autoPlay muted />
             <Heading />
             <h1 className={cx('heading-slider')}>THAT'S MY BEAR</h1>
             <div className="container">
@@ -67,7 +67,7 @@ function NewIn() {
                 <div>
                     <div className={cx('background-image')}></div>
                     <div className={cx('content-image')}>
-                        <img className={cx('new-image')} src={require('src/asetss/image/newin/newin1.png')} />
+                        <img className={cx('new-image')} src={require('src/assets/image/newin/newin1.png')} />
                         <div className={cx('show-product')}>
                             <div className={cx('text-product')}>
                                 <h1>ÁO THUN OVERSIZE</h1>

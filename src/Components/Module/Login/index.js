@@ -135,7 +135,7 @@ function Login() {
                         <Col xs="6">
                             <img
                                 className={cx('image-login', 'google')}
-                                src={require('src/asetss/image/Login/login.jpg')}
+                                src={require('src/assets/image/Login/login.jpg')}
                             />
                         </Col>
                     </Row>
